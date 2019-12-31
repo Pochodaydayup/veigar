@@ -1,17 +1,14 @@
 {
-  "name": "@veigar/veigar",
+  "name": "veigar",
   "version": "1.0.0",
   "description": "",
   "main": "lib/index.js",
-  "typings": "lib/index.d.ts",
-  "scripts": {},
+  "scripts": {
+    "dev": "tsc -w --pretty",
+    "build": "tsc --pretty"
+  },
   "keywords": [],
   "author": "",
   "license": "MIT",
-  "dependencies": {
-    "@types/node": "^8.0.28"
-  },
-  "devDependencies": {
-    "typescript": "^3.7.4"
-  }
+  "dependencies": {}
 }

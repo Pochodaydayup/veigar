@@ -1,10 +1,17 @@
 {
+  "exclude": [
+    "node_modules",
+    "dist",
+    "lib",
+    "__tests__",
+    "**/*.test*",
+    "**/*.spec*"
+  ],
   "compilerOptions": {
     "skipLibCheck": false,
     "target": "ESNext",
     "module": "ESNext",
-    "lib": ["dom", "esnext"],
-    "jsx": "react",
+    "lib": ["esnext"],
     "rootDir": ".",
     "outDir": "lib",
     "downlevelIteration": true,
@@ -15,19 +22,18 @@
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "moduleResolution": "node",
-    "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "baseUrl": ".",
     "noEmit": false,
     // https://github.com/RyanCavanaugh/learn-a/#tsconfigsettingsjson
-    "composite": true,
+    // "composite": true,
     "declaration": true,
     "declarationMap": true,
     "sourceMap": true
   },
   "references": [
-    { "path": "packages/veigar" },
-    { "path": "packages/veigar-cli" }
+    { "path": "./packages/veigar" },
+    { "path": "./packages/veigar-cli" }
   ]
 }

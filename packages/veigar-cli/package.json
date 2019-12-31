@@ -1,22 +1,23 @@
 {
-  "name": "@veigar/veigar-cli",
+  "name": "veigar-cli",
   "version": "1.0.0",
   "description": "",
   "main": "lib/index.js",
   "scripts": {
-    "test": "ava"
+    "test": "ava",
+    "dev": "tsc -w --pretty",
+    "build": "tsc --pretty"
   },
   "keywords": [],
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@veigar/veigar": "^1.0.0",
+    "veigar": "^1.0.0",
     "@types/node": "^8.0.28",
     "minimist": "^1.2.0"
   },
   "devDependencies": {
-    "ava": "^0.22.0",
-    "typescript": "^3.7.4"
+    "ava": "^0.22.0"
   },
   "ava": {
     "files": [
