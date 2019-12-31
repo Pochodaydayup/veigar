@@ -1,0 +1,17 @@
+{
+  "name": "@veigar/veigar",
+  "version": "1.0.0",
+  "description": "",
+  "main": "lib/index.js",
+  "typings": "lib/index.d.ts",
+  "scripts": {},
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@types/node": "^8.0.28"
+  },
+  "devDependencies": {
+    "typescript": "^3.7.4"
+  }
+}
