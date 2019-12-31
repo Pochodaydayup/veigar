@@ -27,7 +27,7 @@
     "baseUrl": ".",
     "noEmit": false,
     // https://github.com/RyanCavanaugh/learn-a/#tsconfigsettingsjson
-    // "composite": true,
+    "composite": true,
     "declaration": true,
     "declarationMap": true,
     "sourceMap": true
