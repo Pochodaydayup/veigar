@@ -3,11 +3,13 @@
   "scripts": {
     "build": "tsc -b packages/veigar packages/veigar-cli",
     "test": "lerna run test",
-    "clean": "rimraf packages/**/lib"
+    "clean": "rimraf packages/**/lib",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
   },
   "devDependencies": {
-    "@types/node": "^13.1.2",
-    "ava": "^2.4.0",
+    "@typescript-eslint/eslint-plugin": "^2.14.0",
+    "@typescript-eslint/parser": "^2.14.0",
+    "eslint": "^6.8.0",
     "lerna": "^3.20.1",
     "rimraf": "^3.0.0",
     "typescript": "^3.7.4"
