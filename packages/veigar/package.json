@@ -11,10 +11,8 @@
   "keywords": [],
   "author": "",
   "license": "MIT",
-  "dependencies": {
-    "@vue/runtime-core": "3.0.0-alpha.0"
-  },
   "devDependencies": {
+    "@rollup/plugin-alias": "^3.0.0",
     "@rollup/plugin-node-resolve": "^6.0.0",
     "rollup": "^1.27.14",
     "rollup-plugin-typescript2": "^0.25.3"

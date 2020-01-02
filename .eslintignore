@@ -2,3 +2,5 @@ node_modules
 lib
 coverage
 examples
+bootstrap.js
+vue-next
