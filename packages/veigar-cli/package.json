@@ -13,11 +13,11 @@
   "license": "MIT",
   "dependencies": {
     "veigar": "^1.0.0",
-    "@types/node": "^8.0.28",
     "minimist": "^1.2.0"
   },
   "devDependencies": {
-    "ava": "^0.22.0"
+    "ava": "^0.22.0",
+    "@types/node": "^8.0.28"
   },
   "ava": {
     "files": [
