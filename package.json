@@ -9,7 +9,8 @@
     "test": "lerna run test",
     "clean": "rimraf packages/**/lib packages/**/tsconfig.tsbuildinfo",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
-    "dev": "wsrun dev"
+    "dev": "wsrun dev",
+    "dev:mp": "wsrun dev:mp"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^2.14.0",

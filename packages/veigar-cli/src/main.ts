@@ -1,7 +1,7 @@
-import { awesomeFn } from 'veigar';
+// import { awesomeFn } from 'veigar';
 
 export function cli() {
-  awesomeFn();
+  // awesomeFn();
   console.log('dddd');
   return Promise.resolve(true);
 }

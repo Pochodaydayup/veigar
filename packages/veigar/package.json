@@ -5,10 +5,18 @@
   "main": "lib/index.js",
   "scripts": {
     "dev": "tsc -w --pretty",
-    "build": "tsc --pretty"
+    "build": "tsc --pretty",
+    "dev:mp": "rollup -c rollup.config.js -w"
   },
   "keywords": [],
   "author": "",
   "license": "MIT",
-  "dependencies": {}
+  "dependencies": {
+    "@vue/runtime-core": "3.0.0-alpha.0"
+  },
+  "devDependencies": {
+    "@rollup/plugin-node-resolve": "^6.0.0",
+    "rollup": "^1.27.14",
+    "rollup-plugin-typescript2": "^0.25.3"
+  }
 }

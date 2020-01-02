@@ -1,3 +1,4 @@
-export function awesomeFn() {
-  console.log("Hello");
-}
+import createPageConfig from './createPageConfig'
+
+export { createPageConfig }
+export * from '@vue/runtime-core'

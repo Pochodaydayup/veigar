@@ -1,5 +1,6 @@
 {
-  "include": ["./src"],
+  "include": ["./src", "./typings"],
+  "exclude": ["./examples"],
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     "rootDir": "src",
