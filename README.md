@@ -19,6 +19,7 @@
 
 - [ ] veigar 的开发
   - [ ] comment 的优化，目前是会创建一个空节点
-  - [ ] ...
+  - [ ] patch props
+  - [ ] setData queue
 
 - [x] 开发流程的优化

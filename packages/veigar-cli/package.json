@@ -12,12 +12,13 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "minimist": "^1.2.0",
     "veigar": "^1.0.0",
-    "minimist": "^1.2.0"
+    "webpack": "^4.41.5"
   },
   "devDependencies": {
-    "ava": "^0.22.0",
-    "@types/node": "^8.0.28"
+    "@types/node": "^8.0.28",
+    "ava": "^0.22.0"
   },
   "ava": {
     "files": [
