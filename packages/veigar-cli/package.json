@@ -2,6 +2,7 @@
   "name": "veigar-cli",
   "version": "1.0.0",
   "description": "",
+  "bin": "./bin/veigar",
   "main": "lib/index.js",
   "scripts": {
     "test": "ava",
@@ -12,13 +13,18 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "chalk": "^3.0.0",
+    "commander": "^4.0.1",
+    "fs-extra": "^8.1.0",
     "minimist": "^1.2.0",
     "veigar": "^1.0.0",
     "webpack": "^4.41.5"
   },
   "devDependencies": {
+    "@types/fs-extra": "^8.0.1",
     "@types/node": "^8.0.28",
-    "ava": "^0.22.0"
+    "ava": "^0.22.0",
+    "webpack-chain": "^6.3.0"
   },
   "ava": {
     "files": [

@@ -14,7 +14,7 @@ export interface RawNode {
 
 let queue: Record<string, any>[] = [];
 
-export function setData(data: Record<string, any>, cb?: () => void) {
+function setData(data: Record<string, any>, cb?: () => void) {
   const app = getApp();
   const [getCurrentPagePath] = getCurrentPages().reverse();
 

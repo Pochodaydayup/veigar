@@ -10,7 +10,8 @@
 ## TODO
 
 - [ ] veigar-cli 的开发
-  - [ ] 接入 webpack
+  - [ ] 接入 webpack webpack-chain
+    - [ ] build 命令的开发
   - [ ] 完成 veigar-loader
     - [ ] compile .vue 文件
   - [ ] 完成 veigar-webpack-plugin 插件

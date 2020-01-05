@@ -6,7 +6,7 @@ import {
 } from '@vue/runtime-core';
 import { createApp } from './render';
 import { generate } from './nodeId';
-import VNode, { setData } from './vnode';
+import VNode from './vnode';
 
 export default function createPageConfig(this: any, page: Component) {
   const root = new VNode({
@@ -32,7 +32,6 @@ export default function createPageConfig(this: any, page: Component) {
           },
           mounted() {
             app.page[route].__mounted = true;
-            setData({});
           },
           render() {
             const page = resolveComponent('page');
