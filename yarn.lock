@@ -926,6 +926,22 @@
     is-module "^1.0.0"
     resolve "^1.11.1"
 
+"@rollup/plugin-replace@^2.3.0":
+  version "2.3.0"
+  resolved "http://bnpm.byted.org/@rollup/plugin-replace/download/@rollup/plugin-replace-2.3.0.tgz#86d88746383e40dd81cffb5216449cc51a734eb9"
+  integrity sha1-htiHRjg+QN2Bz/tSFkScxRpzTrk=
+  dependencies:
+    magic-string "^0.25.2"
+    rollup-pluginutils "^2.6.0"
+
+"@rollup/plugin-typescript@^2.0.2":
+  version "2.0.2"
+  resolved "http://bnpm.byted.org/@rollup/plugin-typescript/download/@rollup/plugin-typescript-2.0.2.tgz#b6f682ff0015e817dcffb31072c5bca9377801a0"
+  integrity sha1-tvaC/wAV6Bfc/7MQcsW8qTd4AaA=
+  dependencies:
+    "@rollup/pluginutils" "^3.0.0"
+    resolve "^1.13.1"
+
 "@rollup/pluginutils@^3.0.0":
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/@rollup/pluginutils/-/pluginutils-3.0.1.tgz#6923a24c4a0db2917e5c77b1ed7d6721ac7fe58e"
@@ -1070,6 +1086,18 @@
     lodash.unescape "4.0.1"
     semver "^6.3.0"
     tsutils "^3.17.1"
+
+"@vue/reactivity@3.0.0-alpha.1":
+  version "3.0.0-alpha.1"
+  resolved "http://bnpm.byted.org/@vue/reactivity/download/@vue/reactivity-3.0.0-alpha.1.tgz#c4d858a97e4a2f249dc15e32f9eaa515161fefc7"
+  integrity sha1-xNhYqX5KLySdwV4y+eqlFRYf78c=
+
+"@vue/runtime-core@^3.0.0-alpha.1":
+  version "3.0.0-alpha.1"
+  resolved "http://bnpm.byted.org/@vue/runtime-core/download/@vue/runtime-core-3.0.0-alpha.1.tgz#37fbee2a5b1703df194c2a12576f15af9f64d48e"
+  integrity sha1-N/vuKlsXA98ZTCoSV28Vr59k1I4=
+  dependencies:
+    "@vue/reactivity" "3.0.0-alpha.1"
 
 "@webassemblyjs/ast@1.8.5":
   version "1.8.5"
@@ -5348,6 +5376,13 @@ macos-release@^2.2.0:
   resolved "https://registry.yarnpkg.com/macos-release/-/macos-release-2.3.0.tgz#eb1930b036c0800adebccd5f17bc4c12de8bb71f"
   integrity sha512-OHhSbtcviqMPt7yfw5ef5aghS2jzFVKEFyCJndQt2YpSQ9qRVSEv2axSJI1paVThEu+FFGs584h/1YhxjVqajA==
 
+magic-string@^0.25.2:
+  version "0.25.5"
+  resolved "http://bnpm.byted.org/magic-string/download/magic-string-0.25.5.tgz#694fa8c6b9a51d83cc4a72c5b6883a7cfa890e40"
+  integrity sha1-aU+oxrmlHYPMSnLFtog6fPqJDkA=
+  dependencies:
+    sourcemap-codec "^1.4.4"
+
 make-dir@^1.0.0:
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/make-dir/-/make-dir-1.3.0.tgz#79c1033b80515bd6d24ec9933e860ca75ee27f0c"
@@ -7091,7 +7126,7 @@ resolve@1.12.0:
   dependencies:
     path-parse "^1.0.6"
 
-resolve@^1.10.0, resolve@^1.11.1:
+resolve@^1.10.0, resolve@^1.11.1, resolve@^1.13.1:
   version "1.14.1"
   resolved "https://registry.yarnpkg.com/resolve/-/resolve-1.14.1.tgz#9e018c540fcf0c427d678b9931cbf45e984bcaff"
   integrity sha512-fn5Wobh4cxbLzuHaE+nphztHy43/b++4M6SsGFC2gB8uYwf0C8LcarfCz1un7UTW8OFQg9iNjZ4xpcFVGebDPg==
@@ -7168,6 +7203,13 @@ rollup-pluginutils@2.8.1:
   version "2.8.1"
   resolved "https://registry.yarnpkg.com/rollup-pluginutils/-/rollup-pluginutils-2.8.1.tgz#8fa6dd0697344938ef26c2c09d2488ce9e33ce97"
   integrity sha512-J5oAoysWar6GuZo0s+3bZ6sVZAC0pfqKz68De7ZgDi5z63jOVZn1uJL/+z1jeKHNbGII8kAyHF5q8LnxSX5lQg==
+  dependencies:
+    estree-walker "^0.6.1"
+
+rollup-pluginutils@^2.6.0:
+  version "2.8.2"
+  resolved "http://bnpm.byted.org/rollup-pluginutils/download/rollup-pluginutils-2.8.2.tgz#72f2af0748b592364dbd3389e600e5a9444a351e"
+  integrity sha1-cvKvB0i1kjZNvTOJ5gDlqURKNR4=
   dependencies:
     estree-walker "^0.6.1"
 
@@ -7457,6 +7499,11 @@ source-map@^0.6.0, source-map@^0.6.1, source-map@~0.6.1:
   version "0.6.1"
   resolved "https://registry.yarnpkg.com/source-map/-/source-map-0.6.1.tgz#74722af32e9614e9c287a8d0bbde48b5e2f1a263"
   integrity sha512-UjgapumWlbMhkBgzT7Ykc5YXUT46F0iKu8SGXq0bcwP5dz/h0Plj6enJqjz1Zbq2l5WaqYnrVbwWOWMyF3F47g==
+
+sourcemap-codec@^1.4.4:
+  version "1.4.7"
+  resolved "http://bnpm.byted.org/sourcemap-codec/download/sourcemap-codec-1.4.7.tgz#5b2cd184e3fe51fd30ba049f7f62bf499b4f73ae"
+  integrity sha1-WyzRhOP+Uf0wugSff2K/SZtPc64=
 
 spdx-correct@^3.0.0:
   version "3.1.0"

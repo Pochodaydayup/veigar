@@ -5,9 +5,6 @@
   "compilerOptions": {
     "rootDir": "src",
     "outDir": "lib",
-    "baseUrl": ".",
-    "paths": {
-      "@vue/runtime-core": ["../../vue-next/packages/runtime-core"]
-    }
+    "baseUrl": "."
   }
 }
