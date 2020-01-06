@@ -16,5 +16,5 @@ export default function build(target: Target, watch: boolean) {
 
   setResolve(config);
 
-  config.devtool(watch ? 'cheap-eval-source-map' : 'nosources-source-map');
+  config.devtool(watch ? 'cheap-eval-source-map' : 'source-map');
 }
