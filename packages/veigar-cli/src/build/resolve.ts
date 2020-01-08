@@ -16,5 +16,6 @@ export default function setResolve(config: Config) {
     .add('.json')
     .end()
     .alias.set('@', path.join(cwd, 'src'))
+    .set('vue', 'veigar')
     .end();
 }

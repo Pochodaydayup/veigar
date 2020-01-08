@@ -5,6 +5,7 @@
   "compilerOptions": {
     "rootDir": "src",
     "outDir": "lib",
-    "baseUrl": "."
+    "module": "ESNext",
+    "target": "ES5"
   }
 }

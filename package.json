@@ -4,13 +4,12 @@
     "packages/*"
   ],
   "scripts": {
-    "postinstall": "node bootstrap.js && wsrun -p veigar -r build",
+    "postinstall": "wsrun -p veigar -r build",
     "build": "wsrun build",
     "test": "lerna run test",
     "clean": "rimraf packages/**/lib packages/**/tsconfig.tsbuildinfo",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
-    "dev": "wsrun dev",
-    "dev:mp": "wsrun dev:mp"
+    "dev": "wsrun dev"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^2.14.0",

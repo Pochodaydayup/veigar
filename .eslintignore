@@ -3,3 +3,4 @@ lib
 coverage
 examples
 rollup.config.js
+bin

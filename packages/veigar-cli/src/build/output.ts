@@ -7,5 +7,6 @@ export default function setOutput(config: Config) {
   config.output
     .path(path.join(cwd, 'dist'))
     .filename('[name].js')
-    .publicPath('');
+    .publicPath('')
+    .end();
 }
