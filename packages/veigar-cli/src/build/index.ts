@@ -27,9 +27,9 @@ function setWebpackConfig(watch: boolean) {
 
   setOptimization(config);
 
-  config.devtool(watch ? 'cheap-eval-source-map' : 'source-map');
+  config.devtool(watch ? 'cheap-module-source-map' : 'source-map');
 
-  config.target('node');
+  config.target('web');
 
   return config.toConfig();
 }

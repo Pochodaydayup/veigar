@@ -20,25 +20,25 @@ export default function setScriptLoader(config: Config) {
       hotReload: isDev,
     })
     .end();
-  config.module
-    .rule('js')
-    .test(/\.js|ts|jsx|tsx$/)
-    .include.add(resolve('src'))
-    .end()
-    .use('babel-loader')
-    .loader(require.resolve('babel-loader'))
-    .options({
-      presets: [
-        [
-          require.resolve('@vue/babel-preset-app'),
-          {
-            useBuiltIns: 'usage',
-            targets: {
-              browsers: ['Android >=4.4.0', 'iOS >=8.0'],
-            },
-          },
-        ],
-      ],
-    })
-    .end();
+  // config.module
+  //   .rule('js')
+  //   .test(/\.js|ts|jsx|tsx$/)
+  //   .include.add(resolve('src'))
+  //   .end()
+  //   .use('babel-loader')
+  //   .loader(require.resolve('babel-loader'))
+  //   .options({
+  //     presets: [
+  //       [
+  //         require.resolve('@vue/babel-preset-app'),
+  //         {
+  //           useBuiltIns: 'usage',
+  //           targets: {
+  //             browsers: ['Android >=4.4.0', 'iOS >=8.0'],
+  //           },
+  //         },
+  //       ],
+  //     ],
+  //   })
+  //   .end();
 }

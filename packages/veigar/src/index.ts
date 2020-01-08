@@ -1,4 +1,4 @@
-import createPageConfig from './createPageConfig'
+import createPageConfig from './createPageConfig';
 
-export { createPageConfig }
-export * from '@vue/runtime-core'
+export { createPageConfig };
+export * from '@vue/runtime-core';

@@ -8,5 +8,6 @@ export default function setOutput(config: Config) {
     .path(path.join(cwd, 'dist'))
     .filename('[name].js')
     .publicPath('')
+    .globalObject('global')
     .end();
 }

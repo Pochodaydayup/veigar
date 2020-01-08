@@ -31,10 +31,12 @@ export default function createPageConfig(this: any, page: Component) {
             page,
           },
           mounted() {
+            console.log('dsadasdsadsa');
             app.page[route].__mounted = true;
           },
           render() {
             const page = resolveComponent('page');
+            console.log(page);
             return openBlock(), createBlock(page!);
           },
         },
