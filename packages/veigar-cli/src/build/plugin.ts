@@ -13,7 +13,11 @@ export default function setPlugin(config: Config) {
     .use(VueLoaderPlugin as any)
     .end()
     .plugin('MiniCssExtractPlugin')
-    .use(MiniCssExtractPlugin)
+    .use(MiniCssExtractPlugin, [
+      {
+        filename: '[name].ttss',
+      },
+    ])
     .end()
     .plugin('MicroAppPlugin')
     .use(MicroAppPlugin)

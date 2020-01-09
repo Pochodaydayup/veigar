@@ -44,13 +44,16 @@ const outputStats = (err: Error, stats: webpack.Stats) => {
     stats.toString({
       colors: true,
       modules: false,
+      assets: false,
+      children: false,
+      entrypoints: false,
     })
   );
 };
 
 export default function build(target: Target, watch: boolean) {
   const config = setWebpackConfig(watch);
-  console.log(config);
+  console.log(config.module?.rules[0]);
 
   const compiler = webpack(config);
 

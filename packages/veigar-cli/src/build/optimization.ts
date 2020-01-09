@@ -14,15 +14,15 @@ export default function setOptimization(config: Config) {
   config.optimization.runtimeChunk({ name: 'common/runtime' });
   config.optimization.splitChunks({
     cacheGroups: {
-      commons: {
-        name: 'common/main',
-        chunks: 'initial',
-        minChunks: 2,
-      },
       vendor: {
         test: /node_modules/,
         name: 'common/vendor',
         chunks: 'all',
+        minChunks: 2,
+      },
+      main: {
+        name: 'common/main',
+        chunks: (chunk: any) => chunk.name === 'main',
       },
     },
   });

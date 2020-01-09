@@ -27,4 +27,9 @@ export default function setEntry(config: Config) {
       .add(filePath)
       .end();
   }
+
+  config
+    .entry('main')
+    .add(path.join(process.cwd(), 'src/main.js'))
+    .end();
 }

@@ -42,24 +42,6 @@ export default class MicroAppPlugin {
         },
       };
 
-      const appSource = `require('./common/runtime.js');
-      require('./common/vendor.js');
-      ${
-        compilation.assets['common/main.js']
-          ? "require('./common/main.js');"
-          : ''
-      }
-      `;
-
-      compilation.assets['app.js'] = {
-        source() {
-          return appSource;
-        },
-        size() {
-          return appSource.length;
-        },
-      };
-
       const ttml = '<view>dddd</view>';
 
       getEntry().forEach(page => {

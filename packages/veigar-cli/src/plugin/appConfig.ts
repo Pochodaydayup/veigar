@@ -4,18 +4,30 @@
  * -----
  * Last Modified: January 8th 2020, 6:19:20 pm
  */
-import path from 'path';
-import fs from 'fs-extra';
-import { parse } from '@vue/compiler-sfc';
+// import path from 'path';
+// import fs from 'fs-extra';
+// import { parse } from '@vue/compiler-sfc';
 
 export default function emitAppConfig(assets: any) {
-  const appVuePath = path.join(process.cwd(), 'src/app.vue');
+  const appSource = `require('./common/runtime.js');\nrequire('./common/vendor.js');\nrequire('./common/main.js');\nrequire('./main.js');\n`;
 
-  const appVue = fs.readFileSync(appVuePath).toString();
+  assets['app.js'] = {
+    source() {
+      return appSource;
+    },
+    size() {
+      return appSource.length;
+    },
+  };
 
-  const { descriptor } = parse(appVue);
+  const appCss = '@import "./common/main.ttss"';
 
-  const code = descriptor.script;
-
-  console.log(code);
+  assets['app.ttss'] = {
+    source() {
+      return appCss;
+    },
+    size() {
+      return appCss.length;
+    },
+  };
 }
