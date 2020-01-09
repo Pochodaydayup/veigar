@@ -1,7 +1,5 @@
-export type Path = string;
-
 enum TYPE {
-  TEXT = 'text',
+  TEXT = 'rawText',
 }
 
 export interface RawNode {
@@ -11,8 +9,6 @@ export interface RawNode {
   children?: RawNode[];
   text?: string;
 }
-
-let queue: Record<string, any>[] = [];
 
 export function setData(data: Record<string, any>, cb?: () => void) {
   const app = getApp();
@@ -26,30 +22,9 @@ export function setData(data: Record<string, any>, cb?: () => void) {
   const context = app.page[getCurrentPage.__route__];
 
   if (context.__mounted) {
-    if (queue.length) {
-      context.setData(
-        {
-          ...queue.reduce((prev, current) => {
-            prev = {
-              ...prev,
-              ...current,
-            };
-            return prev;
-          }, {}),
-          ...data,
-        },
-        cb
-      );
-
-      queue = [];
-      return;
-    }
-
+    console.log(data, cb);
     context.setData(data, cb);
-    return;
   }
-
-  queue.push(data);
 }
 
 export default class VNode {
@@ -67,7 +42,7 @@ export default class VNode {
   constructor({
     id,
     type,
-    props = [],
+    props = {},
     text,
     container,
   }: {
@@ -93,7 +68,6 @@ export default class VNode {
     }
 
     this.children.push(newNode);
-    console.log(newNode.path(), newNode.toJSON());
     setData({
       [newNode.path()]: newNode.toJSON(),
     });
@@ -135,7 +109,7 @@ export default class VNode {
     });
   }
 
-  path(): Path {
+  path(): string {
     if (!this.parentNode) {
       return 'root';
     }

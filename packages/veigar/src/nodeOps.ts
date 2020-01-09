@@ -25,10 +25,10 @@ export const nodeOps = {
   },
 
   createText: (text: string): VNode =>
-    new VNode({ type: 'text', text, id: generate() }),
+    new VNode({ type: 'rawText', text, id: generate() }),
 
   createComment: (text: string): VNode =>
-    new VNode({ type: 'text', text: '', id: generate() }),
+    new VNode({ type: 'rawText', text: '', id: generate() }),
 
   setText: (node: VNode, text: string) => {
     node.setText(text);

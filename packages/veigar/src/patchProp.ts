@@ -6,7 +6,7 @@
 // import { isOn } from '@vue/shared'
 // import { ComponentInternalInstance, SuspenseBoundary } from '@vue/runtime-core'
 
-import VNode, { setData } from './vnode';
+import VNode from './vnode';
 
 export const isOn = (key: string) => key[0] === 'o' && key[1] === 'n';
 
@@ -14,19 +14,20 @@ export function patchProp(
   el: VNode,
   key: string,
   nextValue: any,
-  prevValue: any
+  prevValue: any,
 ) {
   if (nextValue === prevValue) {
     return;
   }
 
-  el.props![key] = nextValue;
-  if (isOn(key)) {
-    const event = key.slice(2).toLowerCase();
-    (el.eventListeners || (el.eventListeners = {}))[event] = nextValue;
-  }
+  console.log(el, prevValue, nextValue);
 
-  setData({
-    [el.path()]: el.toJSON(),
-  });
+  if (isOn(key)) {
+    const [getCurrentPage] = getCurrentPages().reverse();
+    const eventName = `$$event_${el.id}`;
+    getCurrentPage[eventName] = nextValue;
+    el.props![key] = eventName;
+  } else {
+    el.props![key] = nextValue;
+  }
 }

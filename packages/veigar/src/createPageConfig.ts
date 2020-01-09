@@ -33,7 +33,9 @@ export default function createPageConfig(this: any, page: Component) {
           mounted() {
             console.log('page mounted');
             app.page[route].__mounted = true;
-            setData({});
+            setData({
+              root: root.toJSON(),
+            });
           },
           render() {
             const page = resolveComponent('page');

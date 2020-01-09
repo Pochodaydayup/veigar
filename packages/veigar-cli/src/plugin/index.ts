@@ -42,7 +42,7 @@ export default class MicroAppPlugin {
         },
       };
 
-      const ttml = '<view>dddd</view>';
+      const ttml = '<view bindtap="$$event_6">dddd</view>';
 
       getEntry().forEach(page => {
         compilation.assets[`${page.page}.ttml`] = {
