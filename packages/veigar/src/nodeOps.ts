@@ -31,11 +31,11 @@ export const nodeOps = {
     new VNode({ type: 'rawText', text: '', id: generate() }),
 
   setText: (node: VNode, text: string) => {
-    node.setText(text);
+    node.appendChild(new VNode({ type: 'rawText', text, id: generate() }));
   },
 
   setElementText: (el: VNode, text: string) => {
-    el.setText(text);
+    el.appendChild(new VNode({ type: 'rawText', text, id: generate() }));
   },
 
   parentNode: (node: VNode): VNode | null => node.parentNode,

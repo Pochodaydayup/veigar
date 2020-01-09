@@ -6,8 +6,8 @@
  */
 import { Compiler } from 'webpack';
 import path from 'path';
-import { getEntry } from '../build/entry';
 import emitAppConfig from './appConfig';
+import emitTemplate from './template';
 
 export default class MicroAppPlugin {
   apply(compiler: Compiler) {
@@ -42,20 +42,9 @@ export default class MicroAppPlugin {
         },
       };
 
-      const ttml = '<view bindtap="$$event_6">dddd</view>';
-
-      getEntry().forEach(page => {
-        compilation.assets[`${page.page}.ttml`] = {
-          source() {
-            return ttml;
-          },
-          size() {
-            return ttml.length;
-          },
-        };
-      });
-
       emitAppConfig(compilation.assets);
+
+      emitTemplate(compilation.assets);
 
       callback();
     });

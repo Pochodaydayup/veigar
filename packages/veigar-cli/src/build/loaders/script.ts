@@ -1,5 +1,6 @@
 import Config from 'webpack-chain';
 import { baseCompile as compile, baseParse as parse } from '@vue/compiler-core';
+import path from 'path';
 import { resolve } from '../../util';
 
 export default function setScriptLoader(config: Config) {
@@ -19,6 +20,9 @@ export default function setScriptLoader(config: Config) {
       },
       hotReload: isDev,
     })
+    .end()
+    .use('mp-loader')
+    .loader(path.join(__dirname, '../../loader/index.js'))
     .end();
   // config.module
   //   .rule('js')

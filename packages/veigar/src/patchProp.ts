@@ -14,20 +14,24 @@ export function patchProp(
   el: VNode,
   key: string,
   nextValue: any,
-  prevValue: any,
+  prevValue: any
 ) {
   if (nextValue === prevValue) {
     return;
   }
 
-  console.log(el, prevValue, nextValue);
-
   if (isOn(key)) {
     const [getCurrentPage] = getCurrentPages().reverse();
     const eventName = `$$event_${el.id}`;
     getCurrentPage[eventName] = nextValue;
+
+    if (key === 'onClick') {
+      el.props!.onclick = eventName;
+      return;
+    }
     el.props![key] = eventName;
-  } else {
-    el.props![key] = nextValue;
+    return;
   }
+
+  el.props![key] = nextValue;
 }

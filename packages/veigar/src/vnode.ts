@@ -100,15 +100,6 @@ export default class VNode {
     });
   }
 
-  setText(text: string) {
-    this.text = text;
-
-    // TODO 优化 root.text
-    setData({
-      [`${this.path()}.text`]: text,
-    });
-  }
-
   path(): string {
     if (!this.parentNode) {
       return 'root';
