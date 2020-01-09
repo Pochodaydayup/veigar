@@ -1729,6 +1729,13 @@
     "@types/source-list-map" "*"
     source-map "^0.6.1"
 
+"@types/webpack-virtual-modules@^0.1.0":
+  version "0.1.0"
+  resolved "http://bnpm.byted.org/@types/webpack-virtual-modules/download/@types/webpack-virtual-modules-0.1.0.tgz#6b43e8c71a2d24e4f75e33fe5305573117e0c0e3"
+  integrity sha1-a0PoxxotJOT3XjP+UwVXMRfgwOM=
+  dependencies:
+    "@types/webpack" "*"
+
 "@types/webpack@*":
   version "4.41.1"
   resolved "http://bnpm.byted.org/@types/webpack/download/@types/webpack-4.41.1.tgz#571f0e137ce698710dd2637f7d222811eb83e274"

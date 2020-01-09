@@ -6,7 +6,7 @@ import {
 import { nodeOps } from './nodeOps';
 import { patchProp } from './patchProp';
 import VNode from './vnode';
-import createAppConfig from './createAppConfig';
+import createAppConfig from './createApp';
 import { generate } from './nodeId';
 // Importing from the compiler, will be tree-shaken in prod
 // import { isFunction, isString, isHTMLTag, isSVGTag } from '@vue/shared'

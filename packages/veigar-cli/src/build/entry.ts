@@ -21,6 +21,7 @@ export function getEntry(): { page: string; filePath: string }[] {
 
 export default function setEntry(config: Config) {
   const entries = getEntry();
+
   for (const { page, filePath } of entries) {
     config
       .entry(page)

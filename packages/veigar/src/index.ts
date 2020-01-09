@@ -1,5 +1,5 @@
 import createPageConfig from './createPageConfig';
-import createAppConfig from './createAppConfig';
+import createAppConfig from './createApp';
 
 export { createPageConfig, createAppConfig };
 export * from '@vue/runtime-core';
