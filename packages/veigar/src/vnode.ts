@@ -16,9 +16,14 @@ let queue: Record<string, any>[] = [];
 
 function setData(data: Record<string, any>, cb?: () => void) {
   const app = getApp();
-  const [getCurrentPagePath] = getCurrentPages().reverse();
+  const [getCurrentPage] = getCurrentPages().reverse();
 
-  const context = app.page[getCurrentPagePath.__route__];
+  // main.js 里面 mount 的时候实际上 page 还没有
+  if (!getCurrentPage) {
+    return;
+  }
+
+  const context = app.page[getCurrentPage.__route__];
 
   if (context.__mounted) {
     if (queue.length) {

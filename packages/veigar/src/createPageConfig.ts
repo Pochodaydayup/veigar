@@ -4,7 +4,7 @@ import {
   createBlock,
   openBlock,
 } from '@vue/runtime-core';
-import { createApp } from './render';
+import { baseCreateApp as createApp } from './render';
 import { generate } from './nodeId';
 import VNode from './vnode';
 

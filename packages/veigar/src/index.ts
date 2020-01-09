@@ -3,3 +3,4 @@ import createAppConfig from './createAppConfig';
 
 export { createPageConfig, createAppConfig };
 export * from '@vue/runtime-core';
+export * from './render';

@@ -1,19 +1,43 @@
 import {
   createRenderer,
   // warn,
-  // App,
-  // RootRenderFunction
+  // RootRenderFunction,
 } from '@vue/runtime-core';
 import { nodeOps } from './nodeOps';
 import { patchProp } from './patchProp';
 import VNode from './vnode';
+import createAppConfig from './createAppConfig';
+import { generate } from './nodeId';
 // Importing from the compiler, will be tree-shaken in prod
 // import { isFunction, isString, isHTMLTag, isSVGTag } from '@vue/shared'
 
-export const { render, createApp } = createRenderer<VNode, VNode>({
+export const { render, createApp: baseCreateApp } = createRenderer<
+  VNode,
+  VNode
+>({
   patchProp,
   ...nodeOps,
 });
+
+export const createApp = () => {
+  const App = baseCreateApp();
+
+  const mount = App.mount;
+
+  App.mount = (
+    app,
+    root = new VNode({
+      type: 'root',
+      id: generate(),
+    })
+  ) => {
+    createAppConfig(app);
+
+    return mount(app, root);
+  };
+
+  return App;
+};
 
 // // DOM-only runtime directive helpers
 // export {
