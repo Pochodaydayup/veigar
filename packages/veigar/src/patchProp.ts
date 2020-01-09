@@ -6,7 +6,7 @@
 // import { isOn } from '@vue/shared'
 // import { ComponentInternalInstance, SuspenseBoundary } from '@vue/runtime-core'
 
-import VNode from './vnode';
+import VNode, { setData } from './vnode';
 
 export const isOn = (key: string) => key[0] === 'o' && key[1] === 'n';
 
@@ -26,7 +26,7 @@ export function patchProp(
     (el.eventListeners || (el.eventListeners = {}))[event] = nextValue;
   }
 
-  el.container.setData({
-    [el.path()]: el,
+  setData({
+    [el.path()]: el.toJSON(),
   });
 }

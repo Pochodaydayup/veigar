@@ -1,27 +1,27 @@
-import VNode from './vnode'
-import { generate } from './nodeId'
+import VNode from './vnode';
+import { generate } from './nodeId';
 
 export const nodeOps = {
   insert: (child: VNode, parent: VNode, anchor?: VNode) => {
     if (anchor != null) {
-      parent.insertBefore(child, anchor)
+      parent.insertBefore(child, anchor);
     } else {
-      parent.appendChild(child)
+      parent.appendChild(child);
     }
   },
 
   remove: (child: VNode) => {
-    const parent = child.parentNode
+    const parent = child.parentNode;
     if (parent != null) {
-      parent.removeChild(child)
+      parent.removeChild(child);
     }
   },
 
   createElement: (tag: string): VNode => {
     return new VNode({
       type: tag,
-      id: generate()
-    })
+      id: generate(),
+    });
   },
 
   createText: (text: string): VNode =>
@@ -31,12 +31,11 @@ export const nodeOps = {
     new VNode({ type: 'text', text: '', id: generate() }),
 
   setText: (node: VNode, text: string) => {
-    console.log(node, text)
-    node.setText(text)
+    node.setText(text);
   },
 
   setElementText: (el: VNode, text: string) => {
-    el.setText(text)
+    el.setText(text);
   },
 
   parentNode: (node: VNode): VNode | null => node.parentNode,
@@ -46,6 +45,6 @@ export const nodeOps = {
   querySelector: (selector: string): VNode | null => null,
 
   setScopeId(el: VNode, id: string) {
-    el.props && (el.props[id] = '')
-  }
-}
+    el.props && (el.props[id] = '');
+  },
+};

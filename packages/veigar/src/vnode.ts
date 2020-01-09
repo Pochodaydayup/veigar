@@ -14,7 +14,7 @@ export interface RawNode {
 
 let queue: Record<string, any>[] = [];
 
-function setData(data: Record<string, any>, cb?: () => void) {
+export function setData(data: Record<string, any>, cb?: () => void) {
   const app = getApp();
   const [getCurrentPage] = getCurrentPages().reverse();
 
@@ -46,7 +46,6 @@ function setData(data: Record<string, any>, cb?: () => void) {
     }
 
     context.setData(data, cb);
-    console.log(context.__mounted, data);
     return;
   }
 
@@ -68,7 +67,7 @@ export default class VNode {
   constructor({
     id,
     type,
-    props,
+    props = [],
     text,
     container,
   }: {
@@ -130,6 +129,7 @@ export default class VNode {
   setText(text: string) {
     this.text = text;
 
+    // TODO 优化 root.text
     setData({
       [`${this.path()}.text`]: text,
     });
