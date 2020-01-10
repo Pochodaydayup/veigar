@@ -1,0 +1,17 @@
+each props, tag in components
+  template(name='$_' + tag)
+    #{tag}&attributes(props)
+      case tag
+        when 'swiper'
+          block(tt:for="{{item.children}}" tt:key="{{id}}")
+            swiper-item(key="{{item.props.key}}")
+              block(tt:for="{{item.children}}" tt:key="{{id}}")
+                template(is="{{'$_TPL_' + item.type}}" data="{{item}}")/
+        when 'picker-view'
+          block(tt:for="{{item.children}}" tt:key="{{item.id}}")
+            picker-view-colum
+              view(tt:for="{{item.children}}")
+                template(is="{{'$_TPL_' + item.type}}" data="{{item}}")/
+        default
+          block(tt:for='{{item.children}}' tt:key='{{id}}')
+            template(is="{{'$_' + item.type}}" data='{{item}}')/

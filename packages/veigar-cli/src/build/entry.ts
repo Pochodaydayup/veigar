@@ -3,15 +3,25 @@ import fs from 'fs-extra';
 import Config from 'webpack-chain';
 import { fatal } from '../util/logger';
 
+export interface AppConfig {
+  pages: { path: string; style: any }[];
+  globalStyle: any;
+}
+
+export function getAppConfig(): AppConfig {
+  const src = path.join(process.cwd(), 'src');
+
+  return require(path.join(src, 'app.config.js'));
+}
+
 export function getEntry(): { page: string; filePath: string }[] {
   const src = path.join(process.cwd(), 'src');
-  const configPath = path.join(src, 'app.config.js');
 
-  if (!fs.existsSync(configPath)) {
+  if (!fs.existsSync(path.join(src, 'app.config.js'))) {
     fatal(`app.config.js dont exists`);
   }
 
-  const config = require(path.join(src, 'app.config.js'));
+  const config = getAppConfig();
 
   return config.pages.map(({ path: page }: { path: string }) => ({
     page,

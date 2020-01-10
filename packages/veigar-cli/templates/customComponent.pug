@@ -1,0 +1,10 @@
+each props, tag in customComponents
+  template(name='$_' + tag)
+    #{tag}&attributes(props)
+      block(tt:for="{{item.children}}" tt:key="{{item.id}}")
+        block(tt:if="{{item.props['slot']}}")
+          view(slot="{{item.props['slot']}}")&attributes(components.view)
+            block(tt:for="{{item.children}}" tt:key="{{item.id}}")
+              template(is="{{'$_' + item.type}}" data="{{item}}")
+        block(tt:else)
+          template(is="{{'$_' + item.type}}" data="{{item}}")

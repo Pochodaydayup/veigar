@@ -8,13 +8,12 @@ import { Compiler } from 'webpack';
 import path from 'path';
 import emitAppConfig from './appConfig';
 import emitTemplate from './template';
+import { getAppConfig } from '../build/entry';
 
 export default class MicroAppPlugin {
   apply(compiler: Compiler) {
     compiler.hooks.emit.tapAsync('MicroAppPlugin', (compilation, callback) => {
-      const cwd = process.cwd();
-      const configPath = path.join(cwd, 'src/app.config.js');
-      const { pages, globalStyle } = require(configPath);
+      const { pages, globalStyle } = getAppConfig();
       globalStyle.pages = [];
 
       for (const { path: pagePath, style } of pages) {

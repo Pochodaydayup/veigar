@@ -6,7 +6,7 @@
 // import { isOn } from '@vue/shared'
 // import { ComponentInternalInstance, SuspenseBoundary } from '@vue/runtime-core'
 
-import VNode from './vnode';
+import VNode, { setData } from './vnode';
 
 export const isOn = (key: string) => key[0] === 'o' && key[1] === 'n';
 
@@ -34,4 +34,8 @@ export function patchProp(
   }
 
   el.props![key] = nextValue;
+
+  setData({
+    [`${el.path()}.props.${key}`]: nextValue,
+  });
 }

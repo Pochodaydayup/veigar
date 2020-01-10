@@ -13,10 +13,14 @@ import {
   DirectiveNode,
   ElementTypes,
 } from '@vue/compiler-core';
+import { getAppConfig } from '../build/entry';
 
 type Components = Map<string, Set<string>>;
 
-const resourceComponents: Map<string, Components> = new Map();
+const resourceComponents: Map<
+  string,
+  Record<'components' | 'nativeComponents', Components>
+> = new Map();
 
 const collectProps = (props: Array<AttributeNode | DirectiveNode>) => {
   return props.map(prop => {
@@ -33,32 +37,6 @@ const collectProps = (props: Array<AttributeNode | DirectiveNode>) => {
   });
 };
 
-const collectComponents = (
-  components: Components,
-  nodes: TemplateChildNode[]
-) => {
-  for (const child of nodes) {
-    // 只有原生组件才收集 props
-    if (
-      child.type === NodeTypes.ELEMENT &&
-      child.tagType === ElementTypes.ELEMENT
-    ) {
-      const props = components.get(child.tag);
-
-      if (props) {
-        components.set(
-          child.tag,
-          new Set([...props, ...collectProps(child.props)])
-        );
-      } else {
-        components.set(child.tag, new Set(collectProps(child.props)));
-      }
-
-      collectComponents(components, child.children);
-    }
-  }
-};
-
 const getProp = (prop: string) => {
   const props = {
     onclick: 'bindtap',
@@ -67,9 +45,15 @@ const getProp = (prop: string) => {
 };
 
 export const getComponents = () => {
-  const renderComponents: Record<string, Record<string, string>> = {};
+  type RenderComponents = Record<string, Record<string, string>>;
 
-  for (const components of resourceComponents.values()) {
+  const renderComponents: RenderComponents = {};
+  const renderCustomComponents: RenderComponents = {};
+
+  const render = (
+    components: Components,
+    renderComponents: RenderComponents
+  ) => {
     for (const [key, component] of components.entries()) {
       for (const prop of component) {
         renderComponents[key] = {
@@ -78,9 +62,17 @@ export const getComponents = () => {
         };
       }
     }
+  };
+
+  for (const { components, nativeComponents } of resourceComponents.values()) {
+    render(components, renderComponents);
+    render(nativeComponents, renderCustomComponents);
   }
 
-  return renderComponents;
+  return {
+    components: renderComponents,
+    customComponents: renderCustomComponents,
+  };
 };
 
 export default function mpLoader(this: any, source: string) {
@@ -91,9 +83,52 @@ export default function mpLoader(this: any, source: string) {
   }
   const { ast } = baseCompile(descriptor.template.content);
 
-  const components: Map<string, Set<string>> = new Map();
-  collectComponents(components, ast.children);
-  resourceComponents.set(this.resourcePath, components);
+  const components: Components = new Map();
+  const nativeComponents: Components = new Map();
+
+  const appConfig = getAppConfig();
+  const customComponents = appConfig.pages.reduce<string[]>((prev, current) => {
+    prev = [...prev, ...Object.keys(current.style.usingComponents || {})];
+    return prev;
+  }, []);
+
+  const collectComponents = (nodes: TemplateChildNode[]) => {
+    for (const child of nodes) {
+      if (child.type === NodeTypes.ELEMENT) {
+        // native element
+        if (customComponents.includes(child.tag)) {
+          const props = nativeComponents.get(child.tag);
+
+          if (props) {
+            nativeComponents.set(
+              child.tag,
+              new Set([...props, ...collectProps(child.props)])
+            );
+          } else {
+            nativeComponents.set(child.tag, new Set(collectProps(child.props)));
+          }
+        }
+        // 普通 element, eg: view image...
+        if (child.tagType === ElementTypes.ELEMENT) {
+          const props = components.get(child.tag);
+
+          if (props) {
+            components.set(
+              child.tag,
+              new Set([...props, ...collectProps(child.props)])
+            );
+          } else {
+            components.set(child.tag, new Set(collectProps(child.props)));
+          }
+        }
+
+        collectComponents(child.children);
+      }
+    }
+  };
+
+  collectComponents(ast.children);
+  resourceComponents.set(this.resourcePath, { components, nativeComponents });
 
   return source;
 }

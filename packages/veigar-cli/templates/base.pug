@@ -1,11 +1,9 @@
 template(name='$_TPL')
   block(tt:for='{{root.children}}' tt:key='{{id}}')
-    template(is="{{'$_' + item.type}}" data='{{item: item}}')
+    template(is="{{'$_' + item.type}}" data='{{item: item}}')/
 
-each props, tag in components
-  template(name='$_' + tag)
-    #{tag}&attributes(props)
-      block(tt:for='{{item.children}}' tt:key='{{id}}')
-        template(is="{{'$_' + item.type}}" data='{{item: item}}')
+include ./component.pug
+
+include ./customComponent.pug
 
 template(name="$_rawText") {{item.text}}

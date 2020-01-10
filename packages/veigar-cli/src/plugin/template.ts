@@ -16,12 +16,11 @@ export default function emitTemplate(assets: any) {
     path.join(__dirname, '../../templates/base.pug'),
     {
       cache: true,
-      pretty: true,
+      pretty: process.env.NODE_ENV === 'development',
+      doctype: 'html',
     }
   );
-  const baseTmpl = compile({
-    components,
-  });
+  const baseTmpl = compile(components);
 
   assets['base.ttml'] = {
     source() {
@@ -33,10 +32,10 @@ export default function emitTemplate(assets: any) {
   };
 
   const compilePage = compileFile(
-    path.join(__dirname, '../../templates/index.pug'),
+    path.join(__dirname, '../../templates/page.pug'),
     {
       cache: true,
-      pretty: true,
+      pretty: process.env.NODE_ENV === 'development',
     }
   );
 
