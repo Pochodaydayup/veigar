@@ -11,7 +11,9 @@ import { getAppConfig } from '../build/entry';
 // import { parse } from '@vue/compiler-sfc';
 
 export default function emitAppConfig(assets: any) {
-  const { globalStyle } = getAppConfig();
+  const { globalStyle, pages } = getAppConfig();
+  globalStyle.pages = pages.map(page => page.path);
+
   const appSource = `require('./common/runtime.js');\nrequire('./common/vendor.js');\nrequire('./common/main.js');\nrequire('./main.js');\n`;
 
   assets['app.js'] = {
