@@ -53,7 +53,7 @@ const outputStats = (err: Error, stats: webpack.Stats) => {
 
 export default function build(target: Target, watch: boolean) {
   const config = setWebpackConfig(watch);
-  console.log(config.module?.rules[0]);
+  console.log(config.module?.rules);
 
   const compiler = webpack(config);
 
