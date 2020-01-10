@@ -42,7 +42,7 @@ export default function emitTemplate(assets: any) {
 
   const entries = getEntry();
 
-  for (const { filePath, page } of entries) {
+  for (const { page } of entries) {
     const baseTemplate = path.relative(path.dirname(page), 'base.ttml');
     const pageTmpl = compilePage({
       baseTemplate,

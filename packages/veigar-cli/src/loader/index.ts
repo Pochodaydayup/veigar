@@ -11,6 +11,7 @@ import {
   TemplateChildNode,
   AttributeNode,
   DirectiveNode,
+  ElementTypes,
 } from '@vue/compiler-core';
 
 type Components = Map<string, Set<string>>;
@@ -21,6 +22,9 @@ const collectProps = (props: Array<AttributeNode | DirectiveNode>) => {
   return props.map(prop => {
     if (prop.type === NodeTypes.DIRECTIVE) {
       if (prop.arg?.type === NodeTypes.SIMPLE_EXPRESSION) {
+        if (prop.name === 'bind') {
+          return prop.arg.content;
+        }
         return prop.name + prop.arg.content;
       }
     }
@@ -34,7 +38,11 @@ const collectComponents = (
   nodes: TemplateChildNode[]
 ) => {
   for (const child of nodes) {
-    if (child.type === NodeTypes.ELEMENT) {
+    // 只有原生组件才收集 props
+    if (
+      child.type === NodeTypes.ELEMENT &&
+      child.tagType === ElementTypes.ELEMENT
+    ) {
       const props = components.get(child.tag);
 
       if (props) {
