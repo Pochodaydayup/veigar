@@ -1,5 +1,14 @@
 import Config from 'webpack-chain';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import px2units from 'postcss-px2units';
+
+const px2unitOptions = {
+  divisor: 1,
+  multiple: 2,
+  decimalPlaces: 2,
+  comment: 'no',
+  targetUnits: 'rpx',
+};
 
 function setPrecessorLoader(config: Config) {
   const css: Record<
@@ -43,7 +52,10 @@ function setPrecessorLoader(config: Config) {
       .loader('css-loader')
       .end()
       .use('postcss-loader')
-      .loader('postcss-loader')
+      .loader(require.resolve('postcss-loader'))
+      .options({
+        plugins: [px2units(px2unitOptions)],
+      })
       .end()
       .use(loader.loader.name)
       .loader(loader.loader.name)
@@ -67,6 +79,9 @@ export default function setCssLoader(config: Config) {
     .end()
     .use('postcss-loader')
     .loader(require.resolve('postcss-loader'))
+    .options({
+      plugins: [px2units(px2unitOptions)],
+    })
     .end();
 
   setPrecessorLoader(config);

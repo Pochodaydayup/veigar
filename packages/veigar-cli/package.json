@@ -31,6 +31,7 @@
     "optimize-css-assets-webpack-plugin": "^5.0.3",
     "postcss": "^7.0.26",
     "postcss-loader": "^3.0.0",
+    "postcss-px2units": "^0.2.0",
     "pug": "^2.0.4",
     "terser-webpack-plugin": "^2.3.1",
     "url-loader": "^3.0.0",
