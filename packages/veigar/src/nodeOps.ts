@@ -45,6 +45,9 @@ export const nodeOps = {
   querySelector: (selector: string): VNode | null => null,
 
   setScopeId(el: VNode, id: string) {
-    el.props && (el.props[id] = '');
+    if (el.props) {
+      const className = el.props.class;
+      el.props.class = className ? className + ' ' + id : id;
+    }
   },
 };

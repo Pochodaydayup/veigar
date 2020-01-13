@@ -34,7 +34,7 @@
     "pug": "^2.0.4",
     "terser-webpack-plugin": "^2.3.1",
     "url-loader": "^3.0.0",
-    "vue-loader": "^16.0.0-alpha.1",
+    "vue-loader": "^16.0.0-alpha.2",
     "webpack": "^4.41.5",
     "webpack-chain": "^6.3.0",
     "webpack-virtual-modules": "^0.2.1"

@@ -76,7 +76,9 @@ export const getComponents = () => {
 };
 
 export default function mpLoader(this: any, source: string) {
-  const { descriptor } = parse(source);
+  const { descriptor } = parse(source, {
+    filename: this.resourcePath,
+  });
 
   if (!descriptor.template) {
     return source;

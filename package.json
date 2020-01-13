@@ -4,12 +4,13 @@
     "packages/*"
   ],
   "scripts": {
-    "postinstall": "wsrun -p veigar -r build",
+    "postinstall": "yarn patch && wsrun -p veigar -r build",
     "build": "wsrun build",
     "test": "lerna run test",
     "clean": "rimraf packages/**/lib packages/**/tsconfig.tsbuildinfo",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
-    "dev": "wsrun dev"
+    "dev": "wsrun dev",
+    "patch": "yarn patch-package @vue/compiler-sfc --use-yarn"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^2.14.0",
@@ -17,6 +18,7 @@
     "eslint": "^6.8.0",
     "execa": "^4.0.0",
     "lerna": "^3.20.1",
+    "patch-package": "^6.2.0",
     "rimraf": "^3.0.0",
     "typescript": "^3.7.4",
     "wsrun": "^5.2.0"
