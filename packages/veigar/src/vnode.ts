@@ -22,7 +22,7 @@ export function setData(data: Record<string, any>, cb?: () => void) {
     return;
   }
 
-  const context = app.page[getCurrentPage.__route__];
+  const context = app.$page[getCurrentPage.__route__];
 
   if (context.__mounted) {
     console.log(data, cb);

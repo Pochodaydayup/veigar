@@ -32,15 +32,15 @@ export function getEntry(): { page: string; filePath: string }[] {
 export default function setEntry(config: Config) {
   const entries = getEntry();
 
+  config
+    .entry('main')
+    .add(path.join(process.cwd(), 'src/main'))
+    .end();
+
   for (const { page, filePath } of entries) {
     config
       .entry(page)
       .add(filePath)
       .end();
   }
-
-  config
-    .entry('main')
-    .add(path.join(process.cwd(), 'src/main.js'))
-    .end();
 }

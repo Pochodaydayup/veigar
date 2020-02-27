@@ -25,15 +25,14 @@ export const createApp: CreateAppFunction<VNode> = (...args) => {
 
   const mount = App.mount;
 
-  App.mount = (
-    root = new VNode({
+  App.mount = () => {
+    const container = new VNode({
       type: 'root',
       id: generate(),
-    })
-  ) => {
-    createAppConfig(args[0]);
+    });
+    createAppConfig(args[0], container);
 
-    return mount(root);
+    return mount(container);
   };
 
   return App;
