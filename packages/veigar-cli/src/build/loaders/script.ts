@@ -37,7 +37,7 @@ export default function setScriptLoader(config: Config) {
         [
           require.resolve('@vue/babel-preset-app'),
           {
-            useBuiltIns: 'usage',
+            useBuiltIns: 'entry',
             targets: {
               browsers: ['Android >=4.4.0', 'iOS >=8.0'],
             },
