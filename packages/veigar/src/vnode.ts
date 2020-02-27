@@ -1,5 +1,8 @@
-enum TYPE {
-  TEXT = 'rawText',
+import { generate } from './nodeId';
+
+export enum TYPE {
+  RAWTEXT = 'rawText',
+  TEXT = 'text',
 }
 
 export interface RawNode {
@@ -104,6 +107,31 @@ export default class VNode {
     });
   }
 
+  setText(text: string) {
+    if (this.type === TYPE.TEXT) {
+      if (!this.children.length) {
+        this.appendChild(
+          new VNode({
+            type: TYPE.RAWTEXT,
+            id: generate(),
+            text,
+          })
+        );
+        return;
+      }
+
+      this.children[0].text = text;
+      setData({
+        [`${this.path()}.children[0].text`]: text,
+      });
+    } else if (this.type === TYPE.RAWTEXT) {
+      this.text = text;
+      setData({
+        [`${this.path()}.text`]: text,
+      });
+    }
+  }
+
   path(): string {
     if (!this.parentNode) {
       return 'root';
@@ -117,7 +145,7 @@ export default class VNode {
   }
 
   toJSON(): RawNode {
-    if (this.type === TYPE.TEXT) {
+    if (this.type === TYPE.RAWTEXT) {
       return {
         type: this.type,
         text: this.text,

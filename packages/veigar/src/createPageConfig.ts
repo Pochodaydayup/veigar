@@ -20,30 +20,29 @@ export default function createPageConfig(this: any, page: Component) {
     },
     onLoad() {
       const app = getApp();
-      app.page = {};
+      if (!app.page) {
+        app.page = {};
+      }
 
       const route = (this as any).__route__;
       app.page[route] = this;
 
-      createApp().mount(
-        {
-          components: {
-            page,
-          },
-          mounted() {
-            console.log('page mounted');
-            app.page[route].__mounted = true;
-            setData({
-              root: root.toJSON(),
-            });
-          },
-          render() {
-            const page = resolveComponent('page');
-            return openBlock(), createBlock(page!);
-          },
+      createApp({
+        components: {
+          page,
         },
-        root
-      );
+        mounted() {
+          console.log('page mounted');
+          app.page[route].__mounted = true;
+          setData({
+            root: root.toJSON(),
+          });
+        },
+        render() {
+          const page = resolveComponent('page');
+          return openBlock(), createBlock(page!);
+        },
+      }).mount(root);
     },
     onReady() {},
     onShow() {},

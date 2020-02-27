@@ -1,4 +1,4 @@
-import VNode from './vnode';
+import VNode, { TYPE } from './vnode';
 import { generate } from './nodeId';
 
 export const nodeOps = {
@@ -24,18 +24,19 @@ export const nodeOps = {
     });
   },
 
-  createText: (text: string): VNode =>
-    new VNode({ type: 'rawText', text, id: generate() }),
+  createText: (text: string): VNode => {
+    return new VNode({ type: TYPE.RAWTEXT, text, id: generate() });
+  },
 
   createComment: (): VNode =>
-    new VNode({ type: 'rawText', text: '', id: generate() }),
+    new VNode({ type: TYPE.RAWTEXT, text: '', id: generate() }),
 
   setText: (node: VNode, text: string) => {
-    node.appendChild(new VNode({ type: 'rawText', text, id: generate() }));
+    node.setText(text);
   },
 
   setElementText: (el: VNode, text: string) => {
-    el.appendChild(new VNode({ type: 'rawText', text, id: generate() }));
+    el.setText(text);
   },
 
   parentNode: (node: VNode): VNode | null => node.parentNode,

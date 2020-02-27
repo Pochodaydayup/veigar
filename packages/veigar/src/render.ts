@@ -1,5 +1,6 @@
 import {
   createRenderer,
+  CreateAppFunction,
   // warn,
   // RootRenderFunction,
 } from '@vue/runtime-core';
@@ -19,21 +20,20 @@ export const { render, createApp: baseCreateApp } = createRenderer<
   ...nodeOps,
 });
 
-export const createApp = () => {
-  const App = baseCreateApp();
+export const createApp: CreateAppFunction<VNode> = (...args) => {
+  const App = baseCreateApp(...args);
 
   const mount = App.mount;
 
   App.mount = (
-    app,
     root = new VNode({
       type: 'root',
       id: generate(),
     })
   ) => {
-    createAppConfig(app);
+    createAppConfig(args[0]);
 
-    return mount(app, root);
+    return mount(root);
   };
 
   return App;

@@ -1,8 +1,8 @@
 diff --git a/node_modules/@vue/compiler-sfc/dist/compiler-sfc.cjs.js b/node_modules/@vue/compiler-sfc/dist/compiler-sfc.cjs.js
-index 054bdfb..9e9ba18 100644
+index 4a246ef..30596d9 100644
 --- a/node_modules/@vue/compiler-sfc/dist/compiler-sfc.cjs.js
 +++ b/node_modules/@vue/compiler-sfc/dist/compiler-sfc.cjs.js
-@@ -632,12 +632,9 @@ var scopedPlugin = postcss.plugin('vue-scoped', (options) => (root) => {
+@@ -657,11 +657,8 @@ var scopedPlugin = postcss.plugin('vue-scoped', (options) => (root) => {
                      selector.insertAfter(
                      // If node is null it means we need to inject [id] at the start
                      // insertAfter can handle `null` here
@@ -11,10 +11,8 @@ index 054bdfb..9e9ba18 100644
 -                        value: idToAdd,
 -                        raws: {},
 -                        quoteMark: `"`
--                    }));
 +                    node, selectorParser.className({
 +                        value: idToAdd
-+                      }));
+                     }));
                  }
              }
-             selectors.each(selector => rewriteSelector(selector));

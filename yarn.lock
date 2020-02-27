@@ -1927,29 +1927,29 @@
     "@vue/babel-plugin-transform-vue-jsx" "^1.1.2"
     camelcase "^5.0.0"
 
-"@vue/compiler-core@3.0.0-alpha.1", "@vue/compiler-core@^3.0.0-alpha.1":
-  version "3.0.0-alpha.1"
-  resolved "http://bnpm.byted.org/@vue/compiler-core/download/@vue/compiler-core-3.0.0-alpha.1.tgz#963b2c19a5e882726242b32872068f6a23501cfc"
-  integrity sha1-ljssGaXognJiQrMocgaPaiNQHPw=
+"@vue/compiler-core@3.0.0-alpha.7", "@vue/compiler-core@^3.0.0-alpha.7":
+  version "3.0.0-alpha.7"
+  resolved "https://registry.yarnpkg.com/@vue/compiler-core/-/compiler-core-3.0.0-alpha.7.tgz#8e6e71134221f04ae420e76fe68feab87651fc51"
+  integrity sha512-IAhE2G2y4qqLo5D/AFxWnBeQcttnTF6kkgnmjoqTLsDAu47bmeawdJG5MViXi1yIvhYHSYjGk7dQS8wXF/63fA==
   dependencies:
     acorn "^7.1.0"
     estree-walker "^0.8.1"
     source-map "^0.6.1"
 
-"@vue/compiler-dom@3.0.0-alpha.1":
-  version "3.0.0-alpha.1"
-  resolved "http://bnpm.byted.org/@vue/compiler-dom/download/@vue/compiler-dom-3.0.0-alpha.1.tgz#c928dd61f42d0b90e7e9e9d1dd0e8094475a25fe"
-  integrity sha1-ySjdYfQtC5Dn6enR3Q6AlEdaJf4=
+"@vue/compiler-dom@3.0.0-alpha.7":
+  version "3.0.0-alpha.7"
+  resolved "https://registry.yarnpkg.com/@vue/compiler-dom/-/compiler-dom-3.0.0-alpha.7.tgz#ddd7f4c23e80ba67c5f40d0747cc5901ba0b6ee9"
+  integrity sha512-NsC5CcbgiXuqxsAQwj7dkB082WMHL7KhQPnf/BtD0UO5OQ3ooptEOUYCW/bPHXjOcOxuCE0PL5xn4xxD9290zg==
   dependencies:
-    "@vue/compiler-core" "3.0.0-alpha.1"
+    "@vue/compiler-core" "3.0.0-alpha.7"
 
-"@vue/compiler-sfc@^3.0.0-alpha.1":
-  version "3.0.0-alpha.1"
-  resolved "http://bnpm.byted.org/@vue/compiler-sfc/download/@vue/compiler-sfc-3.0.0-alpha.1.tgz#f703abcfca73d39cf79286e58b88fe1cd884967d"
-  integrity sha1-9wOrz8pz05z3kobli4j+HNiEln0=
+"@vue/compiler-sfc@^3.0.0-alpha.7":
+  version "3.0.0-alpha.7"
+  resolved "https://registry.yarnpkg.com/@vue/compiler-sfc/-/compiler-sfc-3.0.0-alpha.7.tgz#4f60b7fef97fe4b973a59316e398fe8800cfc908"
+  integrity sha512-CWksD0Vcl2z+zsYnrX2K38K9hHQU/IVjmD2zugjhLSgScNsXVFMU9DaB93oVqFEScdxeqfqj8P/56J/LbFIRPw==
   dependencies:
-    "@vue/compiler-core" "3.0.0-alpha.1"
-    "@vue/compiler-dom" "3.0.0-alpha.1"
+    "@vue/compiler-core" "3.0.0-alpha.7"
+    "@vue/compiler-dom" "3.0.0-alpha.7"
     consolidate "^0.15.1"
     hash-sum "^2.0.0"
     lru-cache "^5.1.1"
@@ -1958,17 +1958,17 @@
     postcss-selector-parser "^6.0.2"
     source-map "^0.6.1"
 
-"@vue/reactivity@3.0.0-alpha.1":
-  version "3.0.0-alpha.1"
-  resolved "http://bnpm.byted.org/@vue/reactivity/download/@vue/reactivity-3.0.0-alpha.1.tgz#c4d858a97e4a2f249dc15e32f9eaa515161fefc7"
-  integrity sha1-xNhYqX5KLySdwV4y+eqlFRYf78c=
+"@vue/reactivity@3.0.0-alpha.7":
+  version "3.0.0-alpha.7"
+  resolved "https://registry.yarnpkg.com/@vue/reactivity/-/reactivity-3.0.0-alpha.7.tgz#fb5291ea94bb4bc4a02cb04cd7bc424f0f07e0e4"
+  integrity sha512-bmUp5rsjjkmord2wbCFiaD8+EHngI9zzYLcmhkOtVV43EIB0n1aOKrBCq+sq618hFMmv92IMbNW8E+5Kfv4ElA==
 
-"@vue/runtime-core@^3.0.0-alpha.1":
-  version "3.0.0-alpha.1"
-  resolved "http://bnpm.byted.org/@vue/runtime-core/download/@vue/runtime-core-3.0.0-alpha.1.tgz#37fbee2a5b1703df194c2a12576f15af9f64d48e"
-  integrity sha1-N/vuKlsXA98ZTCoSV28Vr59k1I4=
+"@vue/runtime-core@^3.0.0-alpha.7":
+  version "3.0.0-alpha.7"
+  resolved "https://registry.yarnpkg.com/@vue/runtime-core/-/runtime-core-3.0.0-alpha.7.tgz#3b58d95adb3f1c6c3c25178010c4398adf2ea858"
+  integrity sha512-/bZjcm86Avp0CVfM+8ZiUduZ+HZ7KUmTdXxEL3JTw2lP28QluuPkCm34urOGoG37C3G5FrDqag3keNchKqyb9Q==
   dependencies:
-    "@vue/reactivity" "3.0.0-alpha.1"
+    "@vue/reactivity" "3.0.0-alpha.7"
 
 "@webassemblyjs/ast@1.8.5":
   version "1.8.5"
@@ -10605,10 +10605,10 @@ void-elements@^2.0.1:
   resolved "http://bnpm.byted.org/void-elements/download/void-elements-2.0.1.tgz#c066afb582bb1cb4128d60ea92392e94d5e9dbec"
   integrity sha1-wGavtYK7HLQSjWDqkjkulNXp2+w=
 
-vue-loader@^16.0.0-alpha.2:
-  version "16.0.0-alpha.2"
-  resolved "https://registry.yarnpkg.com/vue-loader/-/vue-loader-16.0.0-alpha.2.tgz#461c4c1638115416233195f56ef4bc9ea96e2ad6"
-  integrity sha512-rDiLE1lH4g2JTZ6XQRVq60kDp0GnGhgqAaAC/dh7d5alIYw1Cy/VGTkT2SBqBLA1gXwqxX1dPiYz/jrXp2bxkA==
+vue-loader@^16.0.0-alpha.3:
+  version "16.0.0-alpha.3"
+  resolved "https://registry.yarnpkg.com/vue-loader/-/vue-loader-16.0.0-alpha.3.tgz#3471a3325a07a94e569aa281f83361819e4ad280"
+  integrity sha512-aC7TyXfzGs30mgru4iSfmEC8ZQigwpetaBpr/Q0PA0DZa5lEX9NMT7py9SCrXVq7mZeaYaz0QC/kzuUZtnYMHw==
   dependencies:
     chalk "^3.0.0"
     hash-sum "^2.0.0"

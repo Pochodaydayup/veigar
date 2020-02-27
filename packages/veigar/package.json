@@ -12,6 +12,6 @@
   "license": "MIT",
   "devDependencies": {},
   "dependencies": {
-    "@vue/runtime-core": "^3.0.0-alpha.1"
+    "@vue/runtime-core": "^3.0.0-alpha.7"
   }
 }
