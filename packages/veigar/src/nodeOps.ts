@@ -27,7 +27,7 @@ export const nodeOps = {
   createText: (text: string): VNode =>
     new VNode({ type: 'rawText', text, id: generate() }),
 
-  createComment: (text: string): VNode =>
+  createComment: (): VNode =>
     new VNode({ type: 'rawText', text: '', id: generate() }),
 
   setText: (node: VNode, text: string) => {
@@ -42,7 +42,7 @@ export const nodeOps = {
 
   nextSibling: (node: VNode): VNode | null => node.nextSibling,
 
-  querySelector: (selector: string): VNode | null => null,
+  querySelector: (): VNode | null => null,
 
   setScopeId(el: VNode, id: string) {
     if (el.props) {

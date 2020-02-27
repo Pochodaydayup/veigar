@@ -92,8 +92,12 @@ export default class VNode {
   removeChild(child: VNode) {
     const index = this.children.findIndex(node => node.id === child.id);
 
-    this.children[index - 1].nextSibling = this.children[index + 1];
-    this.children.splice(index, 1);
+    if (index === 0) {
+      this.children = [];
+    } else {
+      this.children[index - 1].nextSibling = this.children[index + 1];
+      this.children.splice(index, 1);
+    }
 
     setData({
       [`${this.path()}.children`]: this.children.map(c => c.toJSON()),

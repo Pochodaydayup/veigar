@@ -23,5 +23,6 @@
   - [ ] comment 的优化，目前是会创建一个空节点
   - [ ] patch props
   - [ ] setData queue
+  - [ ] 把 page 都当做组件来渲染，放在 main.js 里面渲染，而不是每个单独一个组件
 
 - [x] 开发流程的优化
