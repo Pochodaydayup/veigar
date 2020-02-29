@@ -1,45 +1,24 @@
-import {
-  Component,
-  resolveComponent,
-  createBlock,
-  openBlock,
-} from '@vue/runtime-core';
-import { baseCreateApp as createApp } from './render';
-import { setData } from './vnode';
+import { Component } from '@vue/runtime-core';
 
 export default function createPageConfig(this: any, page: Component) {
   const app = getApp();
-  const root = app.$root;
+  const root = app._root;
 
   return {
     data: {
       root: root.toJSON(),
     },
-    onLoad() {
-      const route = (this as any).__route__;
-      app.$page[route] = this;
-
-      createApp({
-        components: {
-          page,
-        },
-        mounted() {
-          console.log('page mounted');
-          app.$page[route].__mounted = true;
-          setData({
-            root: root.toJSON(),
-          });
-        },
-        render() {
-          const page = resolveComponent('page');
-          return openBlock(), createBlock(page!);
-        },
-      }).mount(root);
+    _mounted: false,
+    onLoad(this: any) {
+      this.element = page;
+      app._mount(this);
     },
     onReady() {},
     onShow() {},
     onHide() {},
-    onUnload() {},
+    onUnload() {
+      app._unmount(this);
+    },
     onPullDownRefresh() {},
     onReachBottom() {},
     onShareAppMessage() {},

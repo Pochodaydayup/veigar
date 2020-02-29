@@ -1646,6 +1646,15 @@
   resolved "http://bnpm.byted.org/@types/color-name/download/@types/color-name-1.1.1.tgz#1c1261bbeaa10a8055bbc5d8ab84b7b2afc846a0"
   integrity sha1-HBJhu+qhCoBVu8XYq4S3sq/IRqA=
 
+"@types/copy-webpack-plugin@^5.0.0":
+  version "5.0.0"
+  resolved "http://bnpm.byted.org/@types/copy-webpack-plugin/download/@types/copy-webpack-plugin-5.0.0.tgz#db7f9c9763b10b2af5c83f598fa9b5a13733b20b"
+  integrity sha1-23+cl2OxCyr1yD9Zj6m1oTczsgs=
+  dependencies:
+    "@types/minimatch" "*"
+    "@types/node" "*"
+    "@types/webpack" "*"
+
 "@types/eslint-visitor-keys@^1.0.0":
   version "1.0.0"
   resolved "http://bnpm.byted.org/@types/eslint-visitor-keys/download/@types/eslint-visitor-keys-1.0.0.tgz#1ee30d79544ca84d68d4b3cdb0af4f205663dd2d"
@@ -2254,6 +2263,11 @@ ansi-align@^2.0.0:
   integrity sha1-w2rsy6VjuJzrVW82kPCx2eNUf38=
   dependencies:
     string-width "^2.0.0"
+
+ansi-colors@^3.0.0:
+  version "3.2.4"
+  resolved "http://bnpm.byted.org/ansi-colors/download/ansi-colors-3.2.4.tgz#e3a3da4bfbae6c86a9c285625de124a234026fbf"
+  integrity sha1-46PaS/uubIapwoViXeEkojQCb78=
 
 ansi-escapes@^2.0.0:
   version "2.0.0"
@@ -3933,6 +3947,24 @@ copy-descriptor@^0.1.0:
   resolved "http://bnpm.byted.org/copy-descriptor/download/copy-descriptor-0.1.1.tgz#676f6eb3c39997c2ee1ac3a924fd6124748f578d"
   integrity sha1-Z29us8OZl8LuGsOpJP1hJHSPV40=
 
+copy-webpack-plugin@^5.1.1:
+  version "5.1.1"
+  resolved "http://bnpm.byted.org/copy-webpack-plugin/download/copy-webpack-plugin-5.1.1.tgz#5481a03dea1123d88a988c6ff8b78247214f0b88"
+  integrity sha1-VIGgPeoRI9iKmIxv+LeCRyFPC4g=
+  dependencies:
+    cacache "^12.0.3"
+    find-cache-dir "^2.1.0"
+    glob-parent "^3.1.0"
+    globby "^7.1.1"
+    is-glob "^4.0.1"
+    loader-utils "^1.2.3"
+    minimatch "^3.0.4"
+    normalize-path "^3.0.0"
+    p-limit "^2.2.1"
+    schema-utils "^1.0.0"
+    serialize-javascript "^2.1.2"
+    webpack-log "^2.0.0"
+
 core-assert@^0.2.0:
   version "0.2.1"
   resolved "http://bnpm.byted.org/core-assert/download/core-assert-0.2.1.tgz#f85e2cf9bfed28f773cc8b3fa5c5b69bdc02fe3f"
@@ -4426,7 +4458,7 @@ diffie-hellman@^5.0.0:
     miller-rabin "^4.0.0"
     randombytes "^2.0.0"
 
-dir-glob@^2.2.2:
+dir-glob@^2.0.0, dir-glob@^2.2.2:
   version "2.2.2"
   resolved "http://bnpm.byted.org/dir-glob/download/dir-glob-2.2.2.tgz#fa09f0694153c8918b18ba0deafae94769fc50c4"
   integrity sha1-+gnwaUFTyJGLGLoN6vrpR2n8UMQ=
@@ -5472,6 +5504,18 @@ globby@^6.0.0:
     pify "^2.0.0"
     pinkie-promise "^2.0.0"
 
+globby@^7.1.1:
+  version "7.1.1"
+  resolved "http://bnpm.byted.org/globby/download/globby-7.1.1.tgz#fb2ccff9401f8600945dfada97440cca972b8680"
+  integrity sha1-+yzP+UAfhgCUXfral0QMypcrhoA=
+  dependencies:
+    array-union "^1.0.1"
+    dir-glob "^2.0.0"
+    glob "^7.1.2"
+    ignore "^3.3.5"
+    pify "^3.0.0"
+    slash "^1.0.0"
+
 globby@^9.2.0:
   version "9.2.0"
   resolved "http://bnpm.byted.org/globby/download/globby-9.2.0.tgz#fd029a706c703d29bdd170f4b6db3a3f7a7cb63d"
@@ -5782,6 +5826,11 @@ ignore-walk@^3.0.1:
   integrity sha1-AX4kRxhL/q3nwjjkrv3R6PlbHjc=
   dependencies:
     minimatch "^3.0.4"
+
+ignore@^3.3.5:
+  version "3.3.10"
+  resolved "http://bnpm.byted.org/ignore/download/ignore-3.3.10.tgz#0a97fb876986e8081c631160f8f9f389157f0043"
+  integrity sha1-Cpf7h2mG6AgcYxFg+PnziRV/AEM=
 
 ignore@^4.0.3, ignore@^4.0.6:
   version "4.0.6"
@@ -7793,7 +7842,7 @@ p-limit@^1.1.0:
   dependencies:
     p-try "^1.0.0"
 
-p-limit@^2.0.0, p-limit@^2.2.0:
+p-limit@^2.0.0, p-limit@^2.2.0, p-limit@^2.2.1:
   version "2.2.2"
   resolved "http://bnpm.byted.org/p-limit/download/p-limit-2.2.2.tgz#61279b67721f5287aa1c13a9a7fbbc48c9291b1e"
   integrity sha1-YSebZ3IfUoeqHBOpp/u8SMkpGx4=
@@ -10314,10 +10363,10 @@ typedarray@^0.0.6:
   resolved "http://bnpm.byted.org/typedarray/download/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
 
-typescript@^3.7.4:
-  version "3.7.4"
-  resolved "http://bnpm.byted.org/typescript/download/typescript-3.7.4.tgz#1743a5ec5fef6a1fa9f3e4708e33c81c73876c19"
-  integrity sha1-F0Ol7F/vah+p8+RwjjPIHHOHbBk=
+typescript@^3.8.3:
+  version "3.8.3"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.8.3.tgz#409eb8544ea0335711205869ec458ab109ee1061"
+  integrity sha512-MYlEfn5VrLNsgudQTVJeNaQFUAI7DkhnOjdpAp4T+ku1TfQClewlbSuTVHiA+8skNBgaf02TL/kLOvig4y3G8w==
 
 uglify-js@^2.6.1:
   version "2.8.29"
@@ -10644,6 +10693,14 @@ webpack-chain@^6.3.0:
   dependencies:
     deepmerge "^1.5.2"
     javascript-stringify "^2.0.1"
+
+webpack-log@^2.0.0:
+  version "2.0.0"
+  resolved "http://bnpm.byted.org/webpack-log/download/webpack-log-2.0.0.tgz#5b7928e0637593f119d32f6227c1e0ac31e1b47f"
+  integrity sha1-W3ko4GN1k/EZ0y9iJ8HgrDHhtH8=
+  dependencies:
+    ansi-colors "^3.0.0"
+    uuid "^3.3.2"
 
 webpack-sources@^1.1.0, webpack-sources@^1.4.0, webpack-sources@^1.4.1, webpack-sources@^1.4.3:
   version "1.4.3"

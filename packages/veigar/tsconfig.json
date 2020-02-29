@@ -6,6 +6,6 @@
     "rootDir": "src",
     "outDir": "lib",
     "module": "ESNext",
-    "target": "ES5"
+    "target": "es5"
   }
 }

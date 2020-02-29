@@ -17,19 +17,13 @@ export const nodeOps = {
     }
   },
 
-  createElement: (tag: string): VNode => {
-    return new VNode({
-      type: tag,
-      id: generate(),
-    });
-  },
+  createElement: (tag: string): VNode =>
+    new VNode({ type: tag, id: generate() }),
 
-  createText: (text: string): VNode => {
-    return new VNode({ type: TYPE.RAWTEXT, text, id: generate() });
-  },
+  createText: (text: string): VNode =>
+    new VNode({ type: TYPE.RAWTEXT, text, id: generate() }),
 
-  createComment: (): VNode =>
-    new VNode({ type: TYPE.RAWTEXT, text: '', id: generate() }),
+  createComment: (): VNode => new VNode({ type: TYPE.RAWTEXT, id: generate() }),
 
   setText: (node: VNode, text: string) => {
     node.setText(text);
@@ -39,11 +33,11 @@ export const nodeOps = {
     el.setText(text);
   },
 
-  parentNode: (node: VNode): VNode | null => node.parentNode,
+  parentNode: (node: VNode): VNode | null => node.parentNode ?? null,
 
-  nextSibling: (node: VNode): VNode | null => node.nextSibling,
+  nextSibling: (node: VNode): VNode | null => node.nextSibling ?? null,
 
-  querySelector: (): VNode | null => null,
+  querySelector: (): VNode | null => getApp()._root,
 
   setScopeId(el: VNode, id: string) {
     if (el.props) {

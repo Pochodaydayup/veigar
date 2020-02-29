@@ -1,4 +1,5 @@
 import { generate } from './nodeId';
+import { getContext } from './util';
 
 export enum TYPE {
   RAWTEXT = 'rawText',
@@ -13,20 +14,47 @@ export interface RawNode {
   text?: string;
 }
 
-export function setData(data: Record<string, any>, cb?: () => void) {
-  const app = getApp();
-  const [getCurrentPage] = getCurrentPages().reverse();
+export function setState({
+  node,
+  key = '',
+  data,
+  immediately = false,
+  cb,
+}: {
+  node: VNode;
+  key?: string;
+  data: any;
+  immediately?: boolean;
+  cb?: () => void;
+}) {
+  const context = getContext();
+  const setData = () => {
+    const setKey = `${node.path()}${key}`;
+    console.log(setKey, data);
+    context.setData(
+      {
+        [setKey]: data,
+      },
+      cb
+    );
+  };
 
-  // main.js 里面 mount 的时候实际上 page 还没有
-  if (!getCurrentPage) {
-    return;
-  }
+  if (context._mounted) {
+    if (immediately) {
+      console.log(node);
+      setData();
+      return;
+    }
 
-  const context = app.$page[getCurrentPage.__route__];
-
-  if (context.__mounted) {
-    console.log(data, cb);
-    context.setData(data, cb);
+    if (global.Promise) {
+      Promise.resolve().then(() => {
+        setData();
+      });
+    } else {
+      setTimeout(() => {
+        setData();
+      }, 0);
+    }
   }
 }
 
@@ -37,43 +65,36 @@ export default class VNode {
   text?: string;
   children: VNode[] = [];
   eventListeners?: Record<string, Function | Function[]> | null;
-  container?: any;
 
-  parentNode: VNode | null = null;
-  nextSibling: VNode | null = null;
+  parentNode?: VNode | null;
+  nextSibling?: VNode | null;
 
   constructor({
     id,
     type,
     props = {},
     text,
-    container,
   }: {
     id: number;
     type: string;
     props?: Record<string, any>;
     text?: string;
-    container?: any;
   }) {
     this.type = type;
     this.props = props;
     this.text = text;
     this.id = id;
-    this.children = [];
-    this.container = container;
   }
 
   appendChild(newNode: VNode) {
-    newNode.parentNode = this;
-
     if (this.children.find(child => child.id === newNode.id)) {
       this.removeChild(newNode);
     }
 
+    newNode.parentNode = this;
     this.children.push(newNode);
-    setData({
-      [newNode.path()]: newNode.toJSON(),
-    });
+
+    setState({ node: newNode, data: newNode.toJSON() });
   }
 
   insertBefore(newNode: VNode, anchor: VNode) {
@@ -87,13 +108,19 @@ export default class VNode {
     const anchorIndex = this.children.indexOf(anchor);
     this.children.splice(anchorIndex, 0, newNode);
 
-    setData({
-      [`${this.path()}.children`]: this.children.map(c => c.toJSON()),
+    setState({
+      node: this,
+      key: '.children',
+      data: this.children.map(c => c.toJSON()),
     });
   }
 
   removeChild(child: VNode) {
     const index = this.children.findIndex(node => node.id === child.id);
+
+    if (index < 0) {
+      return;
+    }
 
     if (index === 0) {
       this.children = [];
@@ -102,34 +129,33 @@ export default class VNode {
       this.children.splice(index, 1);
     }
 
-    setData({
-      [`${this.path()}.children`]: this.children.map(c => c.toJSON()),
+    setState({
+      node: this,
+      key: '.children',
+      data: this.children.map(c => c.toJSON()),
     });
   }
 
   setText(text: string) {
-    if (this.type === TYPE.TEXT) {
-      if (!this.children.length) {
-        this.appendChild(
-          new VNode({
-            type: TYPE.RAWTEXT,
-            id: generate(),
-            text,
-          })
-        );
-        return;
-      }
-
-      this.children[0].text = text;
-      setData({
-        [`${this.path()}.children[0].text`]: text,
-      });
-    } else if (this.type === TYPE.RAWTEXT) {
+    if (this.type === TYPE.RAWTEXT) {
       this.text = text;
-      setData({
-        [`${this.path()}.text`]: text,
-      });
+      setState({ node: this, key: '.text', data: text });
+      return;
     }
+
+    if (!this.children.length) {
+      this.appendChild(
+        new VNode({
+          type: TYPE.RAWTEXT,
+          id: generate(),
+          text,
+        })
+      );
+      return;
+    }
+
+    this.children[0].text = text;
+    setState({ node: this, key: '.children[0].text', data: text });
   }
 
   path(): string {

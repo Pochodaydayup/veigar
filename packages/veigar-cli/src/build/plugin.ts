@@ -3,6 +3,8 @@ import Config from 'webpack-chain';
 import OptimizeCSSPlugin from 'optimize-css-assets-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import VirtualModulesPlugin from 'webpack-virtual-modules';
+import CopyWebpackPlugin from 'copy-webpack-plugin';
+import path from 'path';
 
 import MicroAppPlugin from '../plugin';
 import { getEntry } from './entry';
@@ -20,6 +22,16 @@ export default function setPlugin(config: Config) {
 
   // plugin
   config
+    .plugin('copy-webpack-plugin')
+    .use(CopyWebpackPlugin, [
+      [
+        {
+          from: path.join(process.cwd(), 'project.config.json'),
+          to: path.join(process.cwd(), 'dist/project.config.json'),
+        },
+      ],
+    ])
+    .end()
     .plugin('VirtualModulesPlugin')
     .use(VirtualModulesPlugin, [entries])
     .end()

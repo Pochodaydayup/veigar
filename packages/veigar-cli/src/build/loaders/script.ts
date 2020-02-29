@@ -27,13 +27,14 @@ export default function setScriptLoader(config: Config) {
 
   config.module
     .rule('js')
-    .test(/\.js|ts|jsx|tsx$/)
+    .test(/\.(js|ts|jsx|tsx)$/)
     .include.add(resolve('src'))
     .end()
     .use('babel-loader')
     .loader(require.resolve('babel-loader'))
     .options({
       presets: [
+        require.resolve('babel-preset-vca-jsx'),
         [
           require.resolve('@vue/babel-preset-app'),
           {

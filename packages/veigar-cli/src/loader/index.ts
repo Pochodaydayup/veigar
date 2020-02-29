@@ -14,6 +14,7 @@ import {
   ElementTypes,
 } from '@vue/compiler-core';
 import { getAppConfig } from '../build/entry';
+// import util from 'util';
 
 type Components = Map<string, Set<string>>;
 
@@ -29,6 +30,11 @@ const collectProps = (props: Array<AttributeNode | DirectiveNode>) => {
         if (prop.name === 'bind') {
           return prop.arg.content;
         }
+
+        if (prop.name === 'on') {
+          return `bind${prop.arg.content}`;
+        }
+
         return prop.name + prop.arg.content;
       }
     }
@@ -39,7 +45,7 @@ const collectProps = (props: Array<AttributeNode | DirectiveNode>) => {
 
 const getProp = (prop: string) => {
   const props = {
-    onclick: 'bindtap',
+    bindclick: 'bindtap',
   } as any;
   return props[prop] || prop;
 };
@@ -55,10 +61,12 @@ export const getComponents = () => {
     renderComponents: RenderComponents
   ) => {
     for (const [key, component] of components.entries()) {
+      renderComponents[key] = {};
+
       for (const prop of component) {
         renderComponents[key] = {
           ...renderComponents[key],
-          [getProp(prop)]: `{{item.props['${prop}']}}`,
+          [getProp(prop)]: `{{item.props['${getProp(prop)}']}}`,
         };
       }
     }
@@ -84,6 +92,11 @@ export default function mpLoader(this: any, source: string) {
     return source;
   }
   const { ast } = baseCompile(descriptor.template.content);
+  // console.log(
+  //   util.inspect(ast.children, {
+  //     depth: null,
+  //   })
+  // );
 
   const components: Components = new Map();
   const nativeComponents: Components = new Map();
@@ -123,8 +136,18 @@ export default function mpLoader(this: any, source: string) {
             components.set(child.tag, new Set(collectProps(child.props)));
           }
         }
+      }
 
+      if (
+        child.type === NodeTypes.ELEMENT ||
+        child.type === NodeTypes.FOR ||
+        child.type === NodeTypes.IF_BRANCH
+      ) {
         collectComponents(child.children);
+      }
+
+      if (child.type === NodeTypes.IF) {
+        collectComponents(child.branches);
       }
     }
   };
