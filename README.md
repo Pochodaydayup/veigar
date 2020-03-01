@@ -3,9 +3,16 @@
 ## 开发流程
 
 1. git clone git@github.com:Pochodaydayup/veigar.git
-2. yarn
-3. yarn dev:mp
-4. 用头条开发者工具打开 veigar/packages/veigar/examples/mp 即可调试
+2. cd veigar
+3. yarn
+4. yarn dev
+5. cd veigar/packages/veigar && yarn link
+6. cd veigar/packages/veigar-cli && yarn link
+7. git clone git@github.com:Pochodaydayup/veigar-demo.git
+8. cd veigar-demo
+9. yarn
+10. yarn link veigar && yarn link veigar-cli
+11. yarn dev
 
 ## TODO
 
