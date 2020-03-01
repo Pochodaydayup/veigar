@@ -30,7 +30,7 @@ const PageWrapper = (component: ComponentOptions, root: VNode) =>
     },
   });
 
-export default function createAppConfig(app: AppType, container: VNode): any {
+export default function createAppConfig(app: AppType, container: VNode) {
   App({
     ...app,
     _root: container,

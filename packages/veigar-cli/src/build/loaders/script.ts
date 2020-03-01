@@ -27,7 +27,7 @@ export default function setScriptLoader(config: Config) {
 
   config.module
     .rule('js')
-    .test(/\.(js|ts|jsx|tsx)$/)
+    .test(/\.(js|jsx|ts|tsx)$/)
     .include.add(resolve('src'))
     .end()
     .use('babel-loader')
@@ -44,7 +44,10 @@ export default function setScriptLoader(config: Config) {
             },
           },
         ],
-        require.resolve('@babel/preset-typescript'),
+        [
+          require.resolve('@babel/preset-typescript'),
+          { allExtensions: true, isTSX: true },
+        ],
       ],
     })
     .end();
