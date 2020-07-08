@@ -14,6 +14,29 @@ export interface RawNode {
   text?: string;
 }
 
+const setData = ({
+  node,
+  key,
+  data,
+  cb,
+}: {
+  node: VNode;
+  key: string;
+  data: any;
+  cb?: () => void;
+}) => {
+  const context = getContext();
+  const setKey = `${node.path()}${key}`;
+  console.log('setKey', setKey, data);
+
+  context.setData(
+    {
+      [setKey]: data,
+    },
+    cb
+  );
+};
+
 export function setState({
   node,
   key = '',
@@ -28,31 +51,20 @@ export function setState({
   cb?: () => void;
 }) {
   const context = getContext();
-  const setData = () => {
-    const setKey = `${node.path()}${key}`;
-    console.log(setKey, data);
-    context.setData(
-      {
-        [setKey]: data,
-      },
-      cb
-    );
-  };
 
   if (context._mounted) {
     if (immediately) {
-      console.log(node);
-      setData();
+      setData({ node, key, data, cb });
       return;
     }
 
     if (global.Promise) {
       Promise.resolve().then(() => {
-        setData();
+        setData({ node, key, data, cb });
       });
     } else {
       setTimeout(() => {
-        setData();
+        setData({ node, key, data, cb });
       }, 0);
     }
   }
@@ -87,7 +99,7 @@ export default class VNode {
   }
 
   appendChild(newNode: VNode) {
-    if (this.children.find(child => child.id === newNode.id)) {
+    if (this.children.find((child) => child.id === newNode.id)) {
       this.removeChild(newNode);
     }
 
@@ -101,7 +113,7 @@ export default class VNode {
     newNode.parentNode = this;
     newNode.nextSibling = anchor;
 
-    if (this.children.find(child => child.id === newNode.id)) {
+    if (this.children.find((child) => child.id === newNode.id)) {
       this.removeChild(newNode);
     }
 
@@ -111,12 +123,12 @@ export default class VNode {
     setState({
       node: this,
       key: '.children',
-      data: this.children.map(c => c.toJSON()),
+      data: this.children.map((c) => c.toJSON()),
     });
   }
 
   removeChild(child: VNode) {
-    const index = this.children.findIndex(node => node.id === child.id);
+    const index = this.children.findIndex((node) => node.id === child.id);
 
     if (index < 0) {
       return;
@@ -132,7 +144,7 @@ export default class VNode {
     setState({
       node: this,
       key: '.children',
-      data: this.children.map(c => c.toJSON()),
+      data: this.children.map((c) => c.toJSON()),
     });
   }
 
@@ -181,7 +193,7 @@ export default class VNode {
       id: this.id,
       type: this.type,
       props: this.props,
-      children: this.children && this.children.map(c => c.toJSON()),
+      children: this.children && this.children.map((c) => c.toJSON()),
       text: this.text,
     };
   }

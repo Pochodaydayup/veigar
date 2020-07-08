@@ -67,3 +67,4 @@ tsconfig.tsbuildinfo
 
 **/examples/mp/runtime
 vue-next
+.DS_Store

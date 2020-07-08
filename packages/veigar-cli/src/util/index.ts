@@ -2,7 +2,7 @@
  * Created Date: January 7th 2020, 2:42:16 pm
  * Author: zhoupengcheng
  * -----
- * Last Modified: January 7th 2020, 2:42:16 pm
+ * Last Modified: January 5th 2020, 3:57:51 pm
  */
 import path from 'path';
 import fs from 'fs-extra';
@@ -13,7 +13,7 @@ export const getVeigarConfig = () => {
   const configPath = path.join(src, 'veigar.config.js');
 
   if (!fs.existsSync(configPath)) {
-    fatal(`veigar.config.js dont exists`);
+    fatal(`veigar.config.js don't exists`);
   }
 
   return require(path.join(src, 'veigar.config.js'));

@@ -1,6 +1,6 @@
 declare function getApp(): any;
 declare function getCurrentPages(): Array<{
-  setData: () => void;
+  setData: (...args: any) => void;
   __route__: string;
   [key: string]: any;
 }>;
