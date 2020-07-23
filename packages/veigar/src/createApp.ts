@@ -6,8 +6,9 @@ import {
   onMounted,
   ref,
   ComponentOptions,
+  Fragment,
 } from '@vue/runtime-core';
-import VNode, { setState } from './vnode';
+import VNode, { setState, TYPE } from './vnode';
 import { render } from './render';
 import { getContext } from './util';
 
@@ -15,24 +16,30 @@ type ReturnParams<T> = T extends (...args: infer U) => any ? U : T;
 
 export type AppType = ReturnParams<CreateAppFunction<VNode>>[0];
 
-const PageWrapper = (component: PageOptions & ComponentOptions, root: VNode) =>
-  defineComponent({
-    setup() {
-      const context = getContext();
-      context._mounted = false;
+const withPage = (
+  component: PageOptions & ComponentOptions,
+  root: any,
+  index: number
+) =>
+  defineComponent(() => {
+    const context = getContext();
+    context._mounted = false;
 
-      const pageRef = ref(null);
-      component._pageRef = pageRef;
+    const pageRef = ref(null);
+    component._pageRef = pageRef;
 
-      onMounted(() => {
-        context._mounted = true;
-        setState({
-          node: root,
-          data: root.toJSON(),
-        });
+    onMounted(() => {
+      context._mounted = true;
+      const children = root.children.filter(
+        (child: VNode) => child.type !== TYPE.RAWTEXT
+      )[index];
+
+      setState({
+        node: children,
+        data: children.toJSON(),
       });
-      return () => h(component, { ref: pageRef });
-    },
+    });
+    return () => h(component, { ref: pageRef });
   });
 
 export default function createAppConfig(app: AppType, container: VNode) {
@@ -46,8 +53,13 @@ export default function createAppConfig(app: AppType, container: VNode) {
       const pageLength = this._pages.length;
       return this._pages[pageLength - 1];
     },
-    _mount(page: any) {
-      this._pages.push(page);
+    _mount(pageInstance: any, pageOptions: PageOptions) {
+      this._pages.push(pageInstance);
+
+      pageInstance.element = h(
+        withPage(pageOptions, this._root, this._pages.length - 1)
+      );
+
       this._render();
     },
     _unmount() {
@@ -55,9 +67,13 @@ export default function createAppConfig(app: AppType, container: VNode) {
       this._render();
     },
     _render() {
-      const Page = PageWrapper(this.getContext().element, this._root);
-
-      render(h(Page), this._root);
+      render(
+        h(
+          Fragment,
+          this._pages.map((page: any) => page.element)
+        ),
+        this._root
+      );
     },
   });
 }

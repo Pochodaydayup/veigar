@@ -58,15 +58,9 @@ export function setState({
       return;
     }
 
-    if (global.Promise) {
-      Promise.resolve().then(() => {
-        setData({ node, key, data, cb });
-      });
-    } else {
-      setTimeout(() => {
-        setData({ node, key, data, cb });
-      }, 0);
-    }
+    Promise.resolve().then(() => {
+      setData({ node, key, data, cb });
+    });
   }
 }
 

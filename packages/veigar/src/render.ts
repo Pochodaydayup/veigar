@@ -17,7 +17,7 @@ export const { render, createApp: baseCreateApp } = createRenderer<
   ...nodeOps,
 });
 
-export const createApp: CreateAppFunction<VNode> = app => {
+export const createApp: CreateAppFunction<VNode> = (app) => {
   const mainApp = baseCreateApp(app);
 
   const mount = mainApp.mount;

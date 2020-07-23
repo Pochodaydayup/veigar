@@ -32,10 +32,10 @@ export default function createPageConfig(
     },
     _mounted: false,
     _pageRef: ref(null),
+    _lifeCallbacks: [],
 
     onLoad(this: any, options: any) {
-      this.element = page;
-      app._mount(this);
+      app._mount(this, page);
       callLifeCircle(page, 'onLoad', options);
     },
     onReady() {
@@ -49,7 +49,7 @@ export default function createPageConfig(
     },
     onUnload() {
       callLifeCircle(page, 'onUnload');
-      app._unmount(this);
+      app._unmount();
     },
     onPullDownRefresh(e) {
       callLifeCircle(page, 'onPullDownRefresh', e);

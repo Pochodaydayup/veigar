@@ -1,7 +1,8 @@
 import VNode, { TYPE } from './vnode';
 import { generate } from './nodeId';
+import { RendererOptions } from '@vue/runtime-core';
 
-export const nodeOps = {
+export const nodeOps: Omit<RendererOptions<VNode, VNode>, 'patchProp'> = {
   insert: (child: VNode, parent: VNode, anchor?: VNode) => {
     if (anchor != null) {
       parent.insertBefore(child, anchor);

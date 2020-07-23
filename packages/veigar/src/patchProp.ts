@@ -30,6 +30,7 @@ export function patchProp(
     const page = getContext();
     const eventName = `$$event_${el.id}`;
     page[eventName] = nextValue;
+    console.log(page, eventName);
 
     if (props[key]) {
       el.props![props[key]] = eventName;
