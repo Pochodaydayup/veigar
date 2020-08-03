@@ -4,7 +4,7 @@
  * -----
  * Last Modified: January 8th 2020, 7:54:10 pm
  */
-import { parse } from '@vue/compiler-sfc';
+import { parse } from "@vue/compiler-sfc";
 import {
   baseCompile,
   NodeTypes,
@@ -12,26 +12,26 @@ import {
   AttributeNode,
   DirectiveNode,
   ElementTypes,
-} from '@vue/compiler-core';
-import { getAppConfig } from '../build/entry';
+} from "@vue/compiler-core";
+import { getAppConfig } from "../build/entry";
 // import util from 'util';
 
 type Components = Map<string, Set<string>>;
 
 const resourceComponents: Map<
   string,
-  Record<'components' | 'nativeComponents', Components>
+  Record<"components" | "nativeComponents", Components>
 > = new Map();
 
 const collectProps = (props: Array<AttributeNode | DirectiveNode>) => {
-  return props.map(prop => {
+  return props.map((prop) => {
     if (prop.type === NodeTypes.DIRECTIVE) {
       if (prop.arg?.type === NodeTypes.SIMPLE_EXPRESSION) {
-        if (prop.name === 'bind') {
+        if (prop.name === "bind") {
           return prop.arg.content;
         }
 
-        if (prop.name === 'on') {
+        if (prop.name === "on") {
           return `bind${prop.arg.content}`;
         }
 
@@ -45,7 +45,7 @@ const collectProps = (props: Array<AttributeNode | DirectiveNode>) => {
 
 const getProp = (prop: string) => {
   const props = {
-    bindclick: 'bindtap',
+    bindclick: "bindtap",
   } as any;
   return props[prop] || prop;
 };
@@ -61,7 +61,7 @@ export const getComponents = () => {
     renderComponents: RenderComponents
   ) => {
     for (const [key, component] of components.entries()) {
-      renderComponents[key] = {};
+      renderComponents[key] = renderComponents[key] || {};
 
       for (const prop of component) {
         renderComponents[key] = {
