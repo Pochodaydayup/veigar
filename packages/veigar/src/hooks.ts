@@ -17,7 +17,7 @@ export interface LifeCircle {
   onReachBottom: (e: any) => void;
   onShareAppMessage: (e: any) => void;
   onPageScroll: (e: any) => void;
-  _lifeCallbacks: Array<(...args: any) => void>;
+  _lifeCallbacks: Partial<Record<keyof LifeCircle, Array<(...args: any) => void>>>;
 }
 
 export const usePageLifeCircle = (lifeCircle: keyof LifeCircle, cb: any) => {
@@ -26,10 +26,4 @@ export const usePageLifeCircle = (lifeCircle: keyof LifeCircle, cb: any) => {
   const cbs = page._lifeCallbacks[lifeCircle] || [];
 
   page._lifeCallbacks[lifeCircle] = [...cbs, cb];
-
-  page[lifeCircle] = (...args: any) => {
-    for (const cb of page._lifeCallbacks[lifeCircle]) {
-      cb(...args);
-    }
-  };
 };

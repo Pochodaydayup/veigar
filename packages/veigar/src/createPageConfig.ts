@@ -17,7 +17,13 @@ const callLifeCircle = (
   key: keyof Omit<LifeCircle, 'data' | '_mounted'>,
   data?: any
 ) => {
-  page[key] && (page[key] as any).call(page._pageRef.value, data);
+  if (page._lifeCallbacks[key]) {
+    let result;
+    for (const cb of page._lifeCallbacks[key] as Array<(...args: any) => void>) {
+      result = cb.call(page._pageRef.value, data);
+    }
+    return result;
+  }
 };
 
 export default function createPageConfig(
@@ -32,36 +38,36 @@ export default function createPageConfig(
     },
     _mounted: false,
     _pageRef: ref(null),
-    _lifeCallbacks: [],
+    _lifeCallbacks: {},
 
     onLoad(this: any, options: any) {
       app._mount(this, page);
-      callLifeCircle(page, 'onLoad', options);
+      callLifeCircle(this, 'onLoad', options);
     },
     onReady() {
-      callLifeCircle(page, 'onReady');
+      callLifeCircle(this, 'onReady');
     },
     onShow() {
-      callLifeCircle(page, 'onShow');
+      callLifeCircle(this, 'onShow');
     },
     onHide() {
-      callLifeCircle(page, 'onHide');
+      callLifeCircle(this, 'onHide');
     },
     onUnload() {
-      callLifeCircle(page, 'onUnload');
+      callLifeCircle(this, 'onUnload');
       app._unmount();
     },
     onPullDownRefresh(e) {
-      callLifeCircle(page, 'onPullDownRefresh', e);
+      callLifeCircle(this, 'onPullDownRefresh', e);
     },
     onReachBottom(e) {
-      callLifeCircle(page, 'onReachBottom', e);
+      callLifeCircle(this, 'onReachBottom', e);
     },
     onShareAppMessage(e) {
-      callLifeCircle(page, 'onShareAppMessage', e);
+      callLifeCircle(this, 'onShareAppMessage', e);
     },
     onPageScroll(e) {
-      callLifeCircle(page, 'onPageScroll', e);
+      callLifeCircle(this, 'onPageScroll', e);
     },
   };
 }

@@ -20,7 +20,9 @@ function setPrecessorLoader(config: Config) {
       loader: {
         name: 'less-loader',
         options: {
-          javascriptEnabled: true,
+          lessOptions: {
+            javascriptEnabled: true,
+          },
         },
       },
     },
